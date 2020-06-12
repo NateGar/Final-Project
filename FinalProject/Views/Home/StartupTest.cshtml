@@ -1,0 +1,41 @@
+﻿@model RootObject
+
+
+
+    <div>
+        <table class="table">
+            <tr>
+                <th>Company Name</th>
+                <th>Country</th>
+                <th>Dated Added</th>
+                <th>Themes</th>
+                <th>Team</th>
+                <th>Uniqueness</th>
+            </tr>
+
+            @for (int i = 0; i < Model.records.Length; i++)
+            {
+        <tr>
+            <td>
+                @Model.records[i].fields.CompanyName
+            </td>
+            <td>
+                @Model.records[i].fields.Country
+            </td>
+            <td>
+                @Model.records[i].fields.DateAdded
+            </td>
+            <td>
+                @Model.records[i].fields.Themes
+            </td>
+            <td>
+                @Model.records[i].fields.Team
+            </td>
+            <td>
+                @Model.records[i].fields.Uniqueness
+            </td>
+        </tr>
+                    }
+                
+            </table>
+    </div>

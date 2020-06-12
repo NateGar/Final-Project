@@ -6,26 +6,34 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FinalProject.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace FinalProject.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        //private readonly SeamlessDAL RD = new SeamlessDAL();
+        private readonly SeamlessDAL sd;
+        public HomeController(IConfiguration configuration)
         {
-            _logger = logger;
+            sd = new SeamlessDAL(configuration);
         }
-
         public IActionResult Index()
         {
+            ViewBag.s = sd.GetAPIString();
             return View();
         }
-
         public IActionResult Privacy()
         {
             return View();
+        }
+        public IActionResult StartupTest()
+        {
+            //string output = RD.GetAPIString("aww");
+            //ViewBag.test = output;
+            RootObject s = sd.getStart();
+            return View(s);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -34,4 +42,5 @@ namespace FinalProject.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
 }
