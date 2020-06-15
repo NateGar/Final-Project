@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using FinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,11 @@ namespace FinalProject.Controllers
     public class InvestmentsController : Controller
     {
         private readonly SeamlessDAL sd;
-        public InvestmentsController(IConfiguration configuration)
+        private readonly InvestmentsDbContext _context;
+        public InvestmentsController(IConfiguration configuration, InvestmentsDbContext context)
         {
             sd = new SeamlessDAL(configuration);
+            _context = context;
         }
         public IActionResult Index()
         {
@@ -31,6 +34,26 @@ namespace FinalProject.Controllers
             && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment == alignment));
             Startups.RateStartups(found);
             return View(found);
+        }
+
+
+        public IActionResult AddToFavorite(string id)
+        {
+            Favorite favorite = new Favorite
+            {
+                StartupId = id,
+                UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
+            };
+            if (_context.Favorite.Where(x => (x.StartupId == id) && (x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)).ToList().Count > 0)
+            {
+                return RedirectToAction("Favorites");
+            }
+            if (ModelState.IsValid)
+            {
+                _context.Favorite.Add(favorite);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Favorites");
         }
     }
 }
