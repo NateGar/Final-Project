@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using FinalProject.Models;
 using Microsoft.Extensions.Configuration;
+using System.Globalization;
 
 namespace FinalProject.Controllers
 {
@@ -33,7 +34,29 @@ namespace FinalProject.Controllers
             //string output = RD.GetAPIString("aww");
             //ViewBag.test = output;
             RootObject s = sd.getStart();
-            return View(s);
+            
+                //s.records[i].fields.Score = int.Parse(s.records[i].fields.Team) + int.Parse(s.records[i].fields.Uniqueness);
+                //if (s.records[i].fields.Score == 10)
+                //{
+                //    s.records[i].fields.Rank = "Very Strong";
+                //}
+                //else if (s.records[i].fields.Score == 9)
+                //{
+                //    s.records[i].fields.Rank = "Strong";
+                //}
+                //else if (s.records[i].fields.Score == 8)
+                //{
+                //    s.records[i].fields.Rank = "Good";
+                //}
+                //else if (s.records[i].fields.Score == 7)
+                //{
+                //    s.records[i].fields.Rank = "Average";
+                //}
+                //else
+                //{
+                //    s.records[i].fields.Rank = "Weak";
+                //}            
+                return View(s);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

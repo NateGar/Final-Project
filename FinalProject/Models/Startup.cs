@@ -16,11 +16,12 @@ namespace FinalProject.Models
     public class Record
     {
         public string id { get; set; }
-        public Fields fields { get; set; }
+        [JsonProperty(PropertyName = "fields")]
+        public Startups startups { get; set; }
         public DateTime createdTime { get; set; }
     }
 
-    public class Fields
+    public class Startups
     {
         [JsonProperty(PropertyName = "Company Name")]
         public string CompanyName { get; set; }

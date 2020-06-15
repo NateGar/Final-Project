@@ -1,5 +1,5 @@
 ﻿
-@model List<Favorites>
+@model List<Favorite>
 
 <table class="table">
     <tr>
@@ -13,7 +13,7 @@
     @foreach (var fav in Model)
     {
         <tr>
-            <td>@fav.Name</td>
+            <td>@fav.StartupName</td>
             <td>@fav.Rank</td>
             <td>
                 <a href="/Investments/RemoveFavorite?id=@fav.Id" class="btn-danger">Remove Favorite</a>
