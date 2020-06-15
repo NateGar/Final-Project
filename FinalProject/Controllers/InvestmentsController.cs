@@ -57,6 +57,13 @@ namespace FinalProject.Controllers
             return RedirectToAction("Favorites");
         }
 
+        public IActionResult Favorites()
+        {
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var thisUsersFavorites = _context.Favorite.Where(x => x.UserId == id).ToList();
+            return View(thisUsersFavorites);
+        }
+
         public IActionResult RemoveFavorite(int id)
         {
             Favorite found = _context.Favorite.Find(id);
