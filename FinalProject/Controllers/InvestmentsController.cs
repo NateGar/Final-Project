@@ -29,7 +29,7 @@ namespace FinalProject.Controllers
             && (string.IsNullOrWhiteSpace(theme) || x.startups.Themes == theme)
             && (string.IsNullOrWhiteSpace(technologyAreas) || x.startups.TechnologyAreas == technologyAreas)
             && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment == alignment));
-             
+            Startups.RateStartups(found);
             return View(found);
         }
     }

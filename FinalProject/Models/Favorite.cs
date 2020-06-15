@@ -6,6 +6,7 @@ namespace FinalProject.Models
     public partial class Favorite
     {
         public int Id { get; set; }
+        public string StartupId { get; set; }
         public string StartupName { get; set; }
         public int? Rank { get; set; }
         public string PrivateComments { get; set; }
