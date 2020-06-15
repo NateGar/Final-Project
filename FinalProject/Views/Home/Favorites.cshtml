@@ -1,11 +1,16 @@
+<<<<<<< HEAD
+﻿@model IEnumerable<Favorite>
+
+=======
 ﻿
 @model List<Favorite>
+>>>>>>> 3ee93222bf8b778e356e6b90af54e5b43c79bc2f
 
 <table class="table">
     <tr>
         <th>Name</th>
         <th>Rank</th>
-        <th></th>
+        <th>Comments</th>
         <th></th>
 
 
@@ -15,11 +20,12 @@
         <tr>
             <td>@fav.StartupName</td>
             <td>@fav.Rank</td>
+            <td>@fav.PrivateComments</td>
             <td>
-                <a href="/Investments/RemoveFavorite?id=@fav.Id" class="btn-danger">Remove Favorite</a>
+                <a href="/Investment/RemoveFavorite?id=@fav.Id" class="btn-danger">Remove Favorite</a>
             </td>
             <td>
-                <a href="/Tasks/AddComment?id=@fav.Id" class="btn-dark">Add Comment</a>
+                <a href="/Investment/AddComment?id=@fav.Id" class="btn-dark">Add Comment</a>
             </td>
         </tr>
     }
