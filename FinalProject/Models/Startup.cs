@@ -17,6 +17,8 @@ namespace FinalProject.Models
     public class Record
     {
         public string id { get; set; }
+
+        [JsonProperty(PropertyName = "fields")]
         public Startups startups { get; set; }
         public DateTime createdTime { get; set; }
     }

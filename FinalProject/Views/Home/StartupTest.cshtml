@@ -2,17 +2,51 @@
 
 
 
-    <div>
-        <table class="table">
-            <tr>
-                <th>Company Name</th>
-                <th>Country</th>
-                <th>Dated Added</th>
-                <th>Themes</th>
-                <th>Team</th>
-                <th>Uniqueness</th>
-            </tr>
+<div>
+    <table class="table">
+        <tr>
+            <th>Company Name</th>
+            <th>Country</th>
+            <th>Dated Added</th>
+            <th>Themes</th>
+            <th>Team</th>
+            <th>Uniqueness</th>
+        </tr>
 
+        @for (int i = 0; i < Model.records.Length; i++)
+        {
+            <tr>
+                <td>
+                    @Model.records[i].startups.CompanyName
+                </td>
+                <td>
+                    @Model.records[i].startups.Country
+                </td>
+                <td>
+                    @Model.records[i].startups.City
+                </td>
+                <td>
+                    @Model.records[i].startups.DateAdded
+                </td>
+                <td>
+                    @Model.records[i].startups.Themes
+                </td>
+                <td>
+                    @Model.records[i].startups.Team
+                </td>
+                <td>
+                    @Model.records[i].startups.Uniqueness
+                </td>
+                <td>
+                    @Model.records[i].startups.Alignment
+                </td>
+                <td>
+                    @Model.records[i].startups.TechnologyAreas
+                </td>
+            </tr>
+        }
+
+<<<<<<< HEAD
             @for (int i = 0; i < Model.records.Length; i++)
             {
         <tr>
@@ -39,3 +73,7 @@
                 
             </table>
     </div>*@
+=======
+    </table>
+</div>
+>>>>>>> 3ee93222bf8b778e356e6b90af54e5b43c79bc2f

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Record>
+
+    <table class="table">
+        <tr>
+            <th>Company Name</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Themes</th>
+            <th>Technology Areas</th>
+            <th>Alignment</th>
+        </tr>
+
+        @if (Model != null)
+        {
+            foreach (Record r in Model)
+            {
+                <tr>
+                    <td>@r.startups.CompanyName</td>
+                    <td>@r.startups.Country</td>
+                    <td>@r.startups.City</td>
+                    <td>@r.startups.Themes</td>
+                    <td>@r.startups.TechnologyAreas</td>
+                    <td>@r.startups.Alignment</td>
+                </tr>
+            }
+        }
+    </table>
+        

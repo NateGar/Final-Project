@@ -29,11 +29,7 @@ namespace FinalProject.Models
         }
         public string GetPost()
         {
-            string output = GetAPIString();
-            // JObject json = JObject.Parse(output);
-            //List<JToken> modelData = json["data"]["children"].ToList();
-            //string s = modelData[0]["data"].ToString();
-            //RedditPost rp = JsonConvert.DeserializeObject<RedditPost>(modelData[0]["data"].ToString());
+            string output = GetAPIString();            
             return output;
         }
         public RootObject getStart()
