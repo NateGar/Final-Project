@@ -1,0 +1,26 @@
+﻿
+@model List<Favorites>
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Rank</th>
+        <th></th>
+        <th></th>
+
+
+    </tr>
+    @foreach (var fav in Model)
+    {
+        <tr>
+            <td>@fav.Name</td>
+            <td>@fav.Rank</td>
+            <td>
+                <a href="/Investments/RemoveFavorite?id=@fav.Id" class="btn-danger">Remove Favorite</a>
+            </td>
+            <td>
+                <a href="/Tasks/AddComment?id=@fav.Id" class="btn-dark">Add Comment</a>
+            </td>
+        </tr>
+    }
+</table>
