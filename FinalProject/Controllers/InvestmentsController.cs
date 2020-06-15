@@ -56,5 +56,16 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("Favorites");
         }
+
+        public IActionResult RemoveFavorite(int id)
+        {
+            Favorite found = _context.Favorite.Find(id);
+            if (found != null)
+            {
+                _context.Favorite.Remove(found);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Favorites", new { id = found.Id });
+        }
     }
 }
