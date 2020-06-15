@@ -19,17 +19,18 @@ namespace FinalProject.Controllers
         {
             return View();
         }
-        public IActionResult Search(string companyName, string country, string city, string theme, string technologyAreas, string alignment)
+        public IActionResult Search(string companyName, string country, string city, string theme, string technologyAreas, string alignment, int? rating)
         {
             IEnumerable<Record> s = sd.getStart().records;
+            Startups.RateStartups(s);
             IEnumerable<Record> found = s.Where(x =>
             (string.IsNullOrWhiteSpace(companyName) || x.startups.CompanyName.ToLower() == companyName.ToLower())
             && (string.IsNullOrWhiteSpace(country) || x.startups.Country.ToLower() == country.ToLower())
             && (string.IsNullOrWhiteSpace(city) || x.startups.City == city)
             && (string.IsNullOrWhiteSpace(theme) || x.startups.Themes == theme)
             && (string.IsNullOrWhiteSpace(technologyAreas) || x.startups.TechnologyAreas == technologyAreas)
-            && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment == alignment));
-            Startups.RateStartups(found);
+            && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment == alignment)
+            && (rating == null || x.startups.Rating >= rating));
             return View(found);
         }
     }
