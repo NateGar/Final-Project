@@ -14,7 +14,6 @@ namespace FinalProject.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        //private readonly SeamlessDAL RD = new SeamlessDAL();
         private readonly SeamlessDAL sd;
         public HomeController(IConfiguration configuration)
         {
@@ -30,32 +29,8 @@ namespace FinalProject.Controllers
             return View();
         }
         public IActionResult StartupTest()
-        {
-            //string output = RD.GetAPIString("aww");
-            //ViewBag.test = output;
-            RootObject s = sd.getStart();
-            
-                //s.records[i].fields.Score = int.Parse(s.records[i].fields.Team) + int.Parse(s.records[i].fields.Uniqueness);
-                //if (s.records[i].fields.Score == 10)
-                //{
-                //    s.records[i].fields.Rank = "Very Strong";
-                //}
-                //else if (s.records[i].fields.Score == 9)
-                //{
-                //    s.records[i].fields.Rank = "Strong";
-                //}
-                //else if (s.records[i].fields.Score == 8)
-                //{
-                //    s.records[i].fields.Rank = "Good";
-                //}
-                //else if (s.records[i].fields.Score == 7)
-                //{
-                //    s.records[i].fields.Rank = "Average";
-                //}
-                //else
-                //{
-                //    s.records[i].fields.Rank = "Weak";
-                //}            
+        {            
+            RootObject s = sd.getStart();                  
                 return View(s);
         }
 

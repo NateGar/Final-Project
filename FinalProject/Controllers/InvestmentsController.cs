@@ -25,10 +25,10 @@ namespace FinalProject.Controllers
             IEnumerable<Record> found = s.Where(x =>
             (string.IsNullOrWhiteSpace(companyName) || x.startups.CompanyName.ToLower() == companyName.ToLower())
             && (string.IsNullOrWhiteSpace(country) || x.startups.Country.ToLower() == country.ToLower())
-            && (string.IsNullOrWhiteSpace(city) || x.startups.City.ToLower() == city.ToLower())
-            && (string.IsNullOrWhiteSpace(theme) || x.startups.Themes.ToLower() == theme.ToLower())
-            && (string.IsNullOrWhiteSpace(technologyAreas) || x.startups.TechnologyAreas.ToLower() == technologyAreas.ToLower())
-            && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment.ToLower() == alignment.ToLower()));
+            && (string.IsNullOrWhiteSpace(city) || x.startups.City == city)
+            && (string.IsNullOrWhiteSpace(theme) || x.startups.Themes == theme)
+            && (string.IsNullOrWhiteSpace(technologyAreas) || x.startups.TechnologyAreas == technologyAreas)
+            && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment == alignment));
              
             return View(found);
         }
