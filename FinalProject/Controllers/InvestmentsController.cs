@@ -107,10 +107,11 @@ namespace FinalProject.Controllers
             return RedirectToAction("InvestmentsIndex", found);
         }
 
-        public IActionResult AddToFavorite(string name)
+        public IActionResult AddToFavorite(string name, int rating)
         {
             Favorite favorite = new Favorite
             {
+                Rank = rating,
                 StartupName = name,
                 UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
             };
