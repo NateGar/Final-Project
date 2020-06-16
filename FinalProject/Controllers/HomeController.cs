@@ -26,33 +26,12 @@ namespace FinalProject.Controllers
         public IActionResult Privacy()
         {
             return View();
-<<<<<<< HEAD
         }
-        public IActionResult StartupTest()
-<<<<<<< HEAD
-        {            
-            RootObject s = sd.getStart();                  
-                return View(s);
-=======
-        {
-            RootObject s = sd.getStart();
-            return View(s);
->>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
-        }
-=======
-        }        
->>>>>>> f1c630b5a2bfc41e8c67b5367600e61b91b27a45
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-<<<<<<< HEAD
-
     }
-
-=======
-    }
->>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
 }

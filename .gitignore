@@ -2,9 +2,6 @@ bin/
 obj/
 .vs/
 appsettings.json
-<<<<<<< HEAD
-appsettings.Development.json
-=======
 appsettings.Development.json
 InvestmentsDbContext.cs
->>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
+
