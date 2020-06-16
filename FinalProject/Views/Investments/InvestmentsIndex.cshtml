@@ -2,15 +2,15 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Please fill out any (or none) of the options in the search form below to find startup companies related to Seamless, and see their investment rankings.</p>
+</div>
 @if (Model != null)
 {
-    <p>Testing User Pref:</p>
-    <p>@Model.Id</p>
-    <p>@Model.Country</p>
-    <p>@Model.TechArea</p>
-    <p>@Model.Rank</p>
-    <p>@Model.Alignment</p>
-    <p>@Model.Theme</p>
+    <div class="text-center">
+        <p>Or use the button below to find startup companies based on your search preferences.</p>
     <form action="/Investments/Search" method="post">
         <input type="hidden" name="country" value="@Model.Country" />
         <input type="hidden" name="city" value="@Model.City" />
@@ -18,22 +18,10 @@
         <input type="hidden" name="technologyAreas" value="@Model.TechArea" />
         <input type="hidden" name="alignment" value="@Model.Alignment" />
         <input type="hidden" name="rating" value="@Model.Rank" />
-        <input type="submit" />
+        <button type="submit" value="Submit">Search Using Preferences</button>
     </form>
-    <form action="/Investments/RemoveUserPreferences" method="post">
-        <input type="hidden" name="id" value="@Model.Id" />
-        <button type="submit" value="Submit">Remove User Preferences</button>
-    </form>
-    <form action="/Investments/UpdateUserPreferences" method="post">
-        <input type="hidden" name="id" value="@Model.Id" />
-        <button type="submit" value="Submit">Update User Preferences</button>
-    </form>
+    </div>
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>This is our discription of the site.</p>
-</div>
 <div>
     <form action="/Investments/Search" method="post">
         <label for="companyName">Startup Name:</label><br />

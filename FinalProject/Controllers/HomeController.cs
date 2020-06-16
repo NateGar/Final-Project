@@ -21,18 +21,12 @@ namespace FinalProject.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.s = sd.GetAPIString();
             return View();
         }
         public IActionResult Privacy()
         {
             return View();
-        }
-        public IActionResult StartupTest()
-        {
-            RootObject s = sd.getStart();
-            return View(s);
-        }
+        }        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

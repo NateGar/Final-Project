@@ -27,7 +27,13 @@
                     <td>
                         <a href="/Investments/AddToFavorite?name=@r.startups.CompanyName" class="btn-danger">Add to Favorites</a>
                     </td>
-                </tr>                
+                </tr>
+
             }
+
         }
 </table>
+@if (Model == null)
+{
+    <p>Sorry, no companies found under those terms. Would you like to <a href="/Investments/InvestmentsIndex">go back to the Search Page</a></p>
+}

@@ -21,7 +21,6 @@ namespace FinalProject.Controllers
         }
         public IActionResult InvestmentsIndex()
         {
-            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             UserPreferences thisUsersPreferences = _context.UserPreferences.FirstOrDefault();
             return View(thisUsersPreferences);
         }
@@ -41,7 +40,8 @@ namespace FinalProject.Controllers
         }
         public IActionResult UserSurvey()
         {
-            return View();
+            UserPreferences thisUsersPreferences = _context.UserPreferences.FirstOrDefault();
+            return View(thisUsersPreferences);
         }
         public IActionResult AddUserPreferences(string country, string city, string theme, string technologyAreas, string alignment, int? rating)
         {
@@ -72,7 +72,7 @@ namespace FinalProject.Controllers
                 _context.UserPreferences.Remove(found);
                 _context.SaveChanges();
             }
-            return RedirectToAction("InvestmentsIndex");
+            return RedirectToAction("UserSurvey");
         }
         public IActionResult UpdateUserPreferences(int id)
         {
