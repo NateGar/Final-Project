@@ -1,0 +1,62 @@
+﻿@model UserPreferences
+
+    <div>
+        <form action="/Investments/ChangeUserPreferences" method="post">
+            <label for="country">Country:</label><br />
+            <select id="country" name="country" value="@Model.Country">
+                <option value="">Any</option>
+                <option value="USA">USA</option>
+                <option value="Australia">Australia</option>
+                <option value="Canada">Canada</option>
+                <option value="China">China</option>
+                <option value="Denmark">Denmark</option>
+                <option value="Finland">Finland</option>
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Israel">Israel</option>
+                <option value="Japan">Japan</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Portugal">Portugal</option>
+                <option value="Russia">Russia</option>
+                <option value="Sinagpore">Sinagpore</option>
+                <option value="Spain">Spain</option>
+                <option value="United Kingdom">United Kingdom</option>
+            </select>
+            <input type="text" name="city" placeholder="City" value="@Model.City"/><br />
+            <label for="theme">Theme:</label><br />
+            <select id="theme" name="theme" value="@Model.Theme">
+                <option value="">Any</option>
+                <option value="The Good Life">The Good Life</option>
+                <option value="Health Beyond the Hospital">Health Beyond the Hospital</option>
+                <option value="Robust Future">Robust Future</option>
+            </select><br />
+            <label for="technologyAreas">Technology Areas:</label><br />
+            <select id="technologyAreas" name="technologyAreas" value="@Model.TechArea">
+                <option value="">Any</option>
+                <option value="Advanced Materials">Advanced Materials</option>
+                <option value="Business Process">Business Process</option>
+                <option value="Products">Products</option>
+                <option value="Robotics">Robotics</option>
+                <option value="Sensing">Sensing</option>
+                <option value="Software / AI">Software / AI</option>
+            </select><br />
+            <label for="alignment">Seamless Alignment:</label><br />
+            <select id="alignment" name="alignment" value="@Model.Alignment">
+                <option value="">Any</option>
+                <option value="Amway">Amway</option>
+                <option value="Bissell">Bissell</option>
+                <option value="Emergent">Emergent</option>
+                <option value="Faurecia">Faurecia</option>
+                <option value="Priority">Priority</option>
+                <option value="Steelcase">Steelcase</option>
+                <option value="Trinity">Trinity</option>
+                <option value="Wakestream">Wakestream</option>
+                <option value="Whirlpool">Whirlpool</option>
+            </select><br />
+            <label for="rating">Minimum Rating:</label><br />
+            <input type="number" name="rating" placeholder="Rating" value="@Model.Rank"/><br />
+            <br /> 
+            <input type="hidden" name="id" value="@Model.Id" />
+            <input type="submit" />
+        </form>
+    </div>

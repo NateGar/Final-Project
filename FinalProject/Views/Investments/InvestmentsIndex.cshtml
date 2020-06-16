@@ -1,5 +1,33 @@
-﻿@{
+﻿@model UserPreferences
+@{
     ViewData["Title"] = "Home Page";
+}
+@if (Model != null)
+{
+    <p>Testing User Pref:</p>
+    <p>@Model.Id</p>
+    <p>@Model.Country</p>
+    <p>@Model.TechArea</p>
+    <p>@Model.Rank</p>
+    <p>@Model.Alignment</p>
+    <p>@Model.Theme</p>
+    <form action="/Investments/Search" method="post">
+        <input type="hidden" name="country" value="@Model.Country" />
+        <input type="hidden" name="city" value="@Model.City" />
+        <input type="hidden" name="theme" value="@Model.Theme" />
+        <input type="hidden" name="technologyAreas" value="@Model.TechArea" />
+        <input type="hidden" name="alignment" value="@Model.Alignment" />
+        <input type="hidden" name="rating" value="@Model.Rank" />
+        <input type="submit" />
+    </form>
+    <form action="/Investments/RemoveUserPreferences" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" value="Submit">Remove User Preferences</button>
+    </form>
+    <form action="/Investments/UpdateUserPreferences" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" value="Submit">Update User Preferences</button>
+    </form>
 }
 
 <div class="text-center">
@@ -66,4 +94,3 @@
         <br /><input type="submit" /><br />
     </form>
 </div>
-
