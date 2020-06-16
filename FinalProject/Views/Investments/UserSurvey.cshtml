@@ -1,6 +1,6 @@
-﻿@model UserPreferences
+﻿@model List<UserPreferences>
 @{
-    @if (Model != null)
+    @if (Model.Count >= 1)
     {
         <h3>My Search Preferences:</h3>
         <table class="table">
@@ -12,35 +12,44 @@
                 <th>Theme</th>
                 <th>Rating</th>
             </tr>
-            <tr>
-                <td>@Model.Country</td>
-                <td>@Model.City</td>
-                <td>@Model.TechArea</td>
-                <td>@Model.Alignment</td>
-                <td>@Model.Theme</td>
-                <td>@Model.Rank</td>
-            </tr>
+            @foreach (UserPreferences u in Model)
+            {
+                <tr>
+                    <td>@u.Country</td>
+                    <td>@u.City</td>
+                    <td>@u.TechArea</td>
+                    <td>@u.Alignment</td>
+                    <td>@u.Theme</td>
+                    <td>@u.Rank</td>
+                </tr>
+            }
         </table>
+        @foreach (UserPreferences u in Model)
+        {
+            <form action="/Investments/Search" method="post">
+                <input type="hidden" name="country" value="@u.Country" />
+                <input type="hidden" name="city" value="@u.City" />
+                <input type="hidden" name="theme" value="@u.Theme" />
+                <input type="hidden" name="technologyAreas" value="@u.TechArea" />
+                <input type="hidden" name="alignment" value="@u.Alignment" />
+                <input type="hidden" name="rating" value="@u.Rank" />
+                <button type="submit" value="Submit">Search Using Preferences</button>
+            </form>
+            <br />
+            <form action="/Investments/RemoveUserPreferences" method="post">
+                <input type="hidden" name="id" value="@u.Id" />
+                <button type="submit" value="Submit">Remove These Preferences</button>
+            </form>
+            <br />
+            <form action="/Investments/UpdateUserPreferences" method="post">
+                <input type="hidden" name="id" value="@u.Id" />
+                <button type="submit" value="Submit">Edit My Preferences</button>
+            </form>
+            <br />
+            }
 
-        <form action="/Investments/Search" method="post">
-            <input type="hidden" name="country" value="@Model.Country" />
-            <input type="hidden" name="city" value="@Model.City" />
-            <input type="hidden" name="theme" value="@Model.Theme" />
-            <input type="hidden" name="technologyAreas" value="@Model.TechArea" />
-            <input type="hidden" name="alignment" value="@Model.Alignment" />
-            <input type="hidden" name="rating" value="@Model.Rank" />
-            <button type="submit" value="Submit">Search Using Preferences</button>
-        </form><br />
-        <form action="/Investments/RemoveUserPreferences" method="post">
-            <input type="hidden" name="id" value="@Model.Id" />
-            <button type="submit" value="Submit">Remove These Preferences</button>
-        </form><br />
-        <form action="/Investments/UpdateUserPreferences" method="post">
-            <input type="hidden" name="id" value="@Model.Id" />
-            <button type="submit" value="Submit">Edit My Preferences</button>
-        </form><br />
-    }
-    else
+        }
+else
     {
         <h3>Please Fill Out Your Search Preferences:</h3>
         <h4>Or go to <a href="/Investments/InvestmentsIndex"> Search Page</a></h4>
