@@ -27,22 +27,6 @@ namespace FinalProject.Models
             string output = rd.ReadToEnd();
             return output;
         }
-
-        public string GetStartupString(string id)
-        {
-            string url = $"https://api.airtable.com/v0/appFo187B73tuYhyg/Master%20List/{id}?api_key={APIKey}";
-            HttpWebRequest request = WebRequest.CreateHttp(url);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader rd = new StreamReader(response.GetResponseStream());
-            string output = rd.ReadToEnd();
-            return output;
-        }
-        public Record GetRecord(string id)
-        {
-            string output = GetStartupString(id);
-            Record r = JsonConvert.DeserializeObject<Record>(output);
-            return r;
-        }
         public string GetPost()
         {
             string output = GetAPIString();            
