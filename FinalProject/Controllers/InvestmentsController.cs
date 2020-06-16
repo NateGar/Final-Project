@@ -5,10 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using FinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
-<<<<<<< HEAD
-=======
 using Microsoft.EntityFrameworkCore;
->>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
 using Microsoft.Extensions.Configuration;
 
 namespace FinalProject.Controllers
@@ -22,17 +19,18 @@ namespace FinalProject.Controllers
             sd = new SeamlessDAL(configuration);
             _context = context;
         }
-<<<<<<< HEAD
+
         public IActionResult Index()
         {
             return View();
-=======
+        }
+
         public IActionResult InvestmentsIndex()
         {
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var thisUsersPreferences = _context.UserPreferences.Where(x => x.UserId == id).ToList();
             return View(thisUsersPreferences);
->>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
+
         }
         public IActionResult Search(string companyName, string country, string city, string theme, string technologyAreas, string alignment, int? rating)
         {
@@ -42,15 +40,6 @@ namespace FinalProject.Controllers
             (string.IsNullOrWhiteSpace(companyName) || x.startups.CompanyName.ToLower() == companyName.ToLower())
             && (string.IsNullOrWhiteSpace(country) || x.startups.Country.ToLower() == country.ToLower())
             && (string.IsNullOrWhiteSpace(city) || x.startups.City == city)
-<<<<<<< HEAD
-            && (string.IsNullOrWhiteSpace(theme) || x.startups.Themes == theme)
-            && (string.IsNullOrWhiteSpace(technologyAreas) || x.startups.TechnologyAreas == technologyAreas)
-            && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment == alignment)
-            && (rating == null || x.startups.Rating >= rating));
-            return View(found);
-        }
-
-=======
             && (string.IsNullOrWhiteSpace(theme) || x.startups.Themes != null && x.startups.Themes.Contains(theme))
             && (string.IsNullOrWhiteSpace(technologyAreas) || x.startups.TechnologyAreas != null && x.startups.TechnologyAreas.Contains(technologyAreas))
             && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment != null && x.startups.Alignment.Contains(alignment))
@@ -117,7 +106,6 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("InvestmentsIndex", found);
         }
->>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
 
         public IActionResult AddToFavorite(string name)
         {
@@ -137,10 +125,6 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("Favorites");
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> f1c630b5a2bfc41e8c67b5367600e61b91b27a45
 
         public IActionResult Favorites()
         {
@@ -149,11 +133,6 @@ namespace FinalProject.Controllers
             return View(thisUsersFavorites);
         }
 
-<<<<<<< HEAD
-=======
->>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
-=======
->>>>>>> f1c630b5a2bfc41e8c67b5367600e61b91b27a45
         public IActionResult RemoveFavorite(int id)
         {
             Favorite found = _context.Favorite.Find(id);
@@ -164,8 +143,6 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("Favorites", new { id = found.Id });
         }
-<<<<<<< HEAD
-=======
 
         public IActionResult Individual(string id)
         {
@@ -173,10 +150,5 @@ namespace FinalProject.Controllers
             Startups.RateIndividual(r);
             return View(r);
         }
-<<<<<<< HEAD
-
->>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
-=======
->>>>>>> f1c630b5a2bfc41e8c67b5367600e61b91b27a45
     }
 }

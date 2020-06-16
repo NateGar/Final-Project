@@ -1,16 +1,4 @@
-<<<<<<< HEAD
-﻿@model Startups
-
-<h2>@Model.CompanyName</h2>
-<h3>@Model.City</h3>
-<h3>@Model.Country</h3>
-<p>@Model.TwoLineCompanySummary</p>
-<p>@Model.Alignment</p>
-<p>@Model.Themes</p>
-<p>@Model.Raised</p>
-<p>@Model.TechnologyAreas</p>
-=======
-﻿@model Record
+@model Record
 
 <h2>Startup Name: @Model.startups.CompanyName</h2>
 <h3>City: @Model.startups.City</h3>
@@ -22,15 +10,10 @@
 <p>Technology Areas: @Model.startups.TechnologyAreas</p>
 
 
-<<<<<<< HEAD
-<button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName'">Add to Favorites</button>
->>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
-=======
-
 <button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName'">Add to Favorites</button>
 
 <form>
     <input type="button" value="back to results" onclick="window.location = document.referrer">
 </form>
 
->>>>>>> f1c630b5a2bfc41e8c67b5367600e61b91b27a45
+
