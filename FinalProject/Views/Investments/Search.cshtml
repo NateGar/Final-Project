@@ -16,7 +16,7 @@
             foreach (Record r in Model)
             {
                 <tr>
-                    <td>@r.startups.CompanyName</td>
+                    <td><a href="/Investments/Individual?id=@r.id">@r.startups.CompanyName</a></td>
                     <td>@r.startups.Country</td>
                     <td>@r.startups.City</td>
                     <td>@r.startups.Themes</td>

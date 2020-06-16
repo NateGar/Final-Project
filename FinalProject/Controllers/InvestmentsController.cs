@@ -74,5 +74,11 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("Favorites", new { id = found.Id });
         }
+
+        public IActionResult Individual(string id)
+        {
+            Record r = sd.GetRecord(id);
+            return View(r);
+        }
     }
 }
