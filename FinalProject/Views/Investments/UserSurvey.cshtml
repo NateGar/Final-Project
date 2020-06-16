@@ -1,58 +1,115 @@
-﻿<div>
-    <form action="/Investments/AddUserPreferences" method="post">
-        <label for="country">Country:</label><br />
-        <select id="country" name="country">
-            <option value="">Any</option>
-            <option value="USA">USA</option>
-            <option value="Australia">Australia</option>
-            <option value="Canada">Canada</option>
-            <option value="China">China</option>
-            <option value="Denmark">Denmark</option>
-            <option value="Finland">Finland</option>
-            <option value="France">France</option>
-            <option value="Germany">Germany</option>
-            <option value="Israel">Israel</option>
-            <option value="Japan">Japan</option>
-            <option value="Mexico">Mexico</option>
-            <option value="Portugal">Portugal</option>
-            <option value="Russia">Russia</option>
-            <option value="Sinagpore">Sinagpore</option>
-            <option value="Spain">Spain</option>
-            <option value="United Kingdom">United Kingdom</option>
-        </select>
-        <input type="text" name="city" placeholder="City" /><br />
-        <label for="theme">Theme:</label><br />
-        <select id="theme" name="theme">
-            <option value="">Any</option>
-            <option value="The Good Life">The Good Life</option>
-            <option value="Health Beyond the Hospital">Health Beyond the Hospital</option>
-            <option value="Robust Future">Robust Future</option>
-        </select><br />
-        <label for="technologyAreas">Technology Areas:</label><br />
-        <select id="technologyAreas" name="technologyAreas">
-            <option value="">Any</option>
-            <option value="Advanced Materials">Advanced Materials</option>
-            <option value="Business Process">Business Process</option>
-            <option value="Products">Products</option>
-            <option value="Robotics">Robotics</option>
-            <option value="Sensing">Sensing</option>
-            <option value="Software / AI">Software / AI</option>
-        </select><br />
-        <label for="alignment">Seamless Alignment:</label><br />
-        <select id="alignment" name="alignment">
-            <option value="">Any</option>
-            <option value="Amway">Amway</option>
-            <option value="Bissell">Bissell</option>
-            <option value="Emergent">Emergent</option>
-            <option value="Faurecia">Faurecia</option>
-            <option value="Priority">Priority</option>
-            <option value="Steelcase">Steelcase</option>
-            <option value="Trinity">Trinity</option>
-            <option value="Wakestream">Wakestream</option>
-            <option value="Whirlpool">Whirlpool</option>
-        </select><br />
-        <label for="rating">Minimum Rating:</label><br />
-        <input type="number" name="rating" placeholder="Rating" /><br />
-        <br /> <input type="submit" />
-    </form>
-</div>
+﻿@model List<UserPreferences>
+@{
+    @if (Model.Count >= 1)
+    {
+        <h3>My Search Preferences:</h3>
+        <table class="table">
+            <tr>
+                <th>Country</th>
+                <th>City</th>
+                <th>Technology Area</th>
+                <th>Seamless Alignment</th>
+                <th>Theme</th>
+                <th>Rating</th>
+            </tr>
+            @foreach (UserPreferences u in Model)
+            {
+                <tr>
+                    <td>@u.Country</td>
+                    <td>@u.City</td>
+                    <td>@u.TechArea</td>
+                    <td>@u.Alignment</td>
+                    <td>@u.Theme</td>
+                    <td>@u.Rank</td>
+                </tr>
+            }
+        </table>
+        @foreach (UserPreferences u in Model)
+        {
+            <form action="/Investments/Search" method="post">
+                <input type="hidden" name="country" value="@u.Country" />
+                <input type="hidden" name="city" value="@u.City" />
+                <input type="hidden" name="theme" value="@u.Theme" />
+                <input type="hidden" name="technologyAreas" value="@u.TechArea" />
+                <input type="hidden" name="alignment" value="@u.Alignment" />
+                <input type="hidden" name="rating" value="@u.Rank" />
+                <button type="submit" value="Submit">Search Using Preferences</button>
+            </form>
+            <br />
+            <form action="/Investments/RemoveUserPreferences" method="post">
+                <input type="hidden" name="id" value="@u.Id" />
+                <button type="submit" value="Submit">Remove These Preferences</button>
+            </form>
+            <br />
+            <form action="/Investments/UpdateUserPreferences" method="post">
+                <input type="hidden" name="id" value="@u.Id" />
+                <button type="submit" value="Submit">Edit My Preferences</button>
+            </form>
+            <br />
+            }
+
+        }
+else
+    {
+        <h3>Please Fill Out Your Search Preferences:</h3>
+        <h4>Or go to <a href="/Investments/InvestmentsIndex"> Search Page</a></h4>
+        <div>
+            <form action="/Investments/AddUserPreferences" method="post">
+                <label for="country">Country:</label><br />
+                <select id="country" name="country">
+                    <option value="">Any</option>
+                    <option value="USA">USA</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Canada">Canada</option>
+                    <option value="China">China</option>
+                    <option value="Denmark">Denmark</option>
+                    <option value="Finland">Finland</option>
+                    <option value="France">France</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Israel">Israel</option>
+                    <option value="Japan">Japan</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="Russia">Russia</option>
+                    <option value="Sinagpore">Sinagpore</option>
+                    <option value="Spain">Spain</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                </select>
+                <input type="text" name="city" placeholder="City" /><br />
+                <label for="theme">Theme:</label><br />
+                <select id="theme" name="theme">
+                    <option value="">Any</option>
+                    <option value="The Good Life">The Good Life</option>
+                    <option value="Health Beyond the Hospital">Health Beyond the Hospital</option>
+                    <option value="Robust Future">Robust Future</option>
+                </select><br />
+                <label for="technologyAreas">Technology Areas:</label><br />
+                <select id="technologyAreas" name="technologyAreas">
+                    <option value="">Any</option>
+                    <option value="Advanced Materials">Advanced Materials</option>
+                    <option value="Business Process">Business Process</option>
+                    <option value="Products">Products</option>
+                    <option value="Robotics">Robotics</option>
+                    <option value="Sensing">Sensing</option>
+                    <option value="Software / AI">Software / AI</option>
+                </select><br />
+                <label for="alignment">Seamless Alignment:</label><br />
+                <select id="alignment" name="alignment">
+                    <option value="">Any</option>
+                    <option value="Amway">Amway</option>
+                    <option value="Bissell">Bissell</option>
+                    <option value="Emergent">Emergent</option>
+                    <option value="Faurecia">Faurecia</option>
+                    <option value="Priority">Priority</option>
+                    <option value="Steelcase">Steelcase</option>
+                    <option value="Trinity">Trinity</option>
+                    <option value="Wakestream">Wakestream</option>
+                    <option value="Whirlpool">Whirlpool</option>
+                </select><br />
+                <label for="rating">Minimum Rating:</label><br />
+                <input type="number" name="rating" placeholder="Rating" /><br />
+                <br /> <input type="submit" />
+            </form>
+        </div>
+    }
+}

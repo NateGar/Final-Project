@@ -30,7 +30,7 @@ namespace FinalProject.Controllers
         public IActionResult InvestmentsIndex()
         {
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            UserPreferences thisUsersPreferences = _context.UserPreferences.FirstOrDefault();
+            var thisUsersPreferences = _context.UserPreferences.Where(x => x.UserId == id).ToList();
             return View(thisUsersPreferences);
 >>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
         }
@@ -59,7 +59,10 @@ namespace FinalProject.Controllers
         }
         public IActionResult UserSurvey()
         {
-            return View();
+            //UserPreferences thisUsersPreferences = _context.UserPreferences.FirstOrDefault();
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var thisUsersPreferences = _context.UserPreferences.Where(x => x.UserId == id).ToList();
+            return View(thisUsersPreferences);
         }
         public IActionResult AddUserPreferences(string country, string city, string theme, string technologyAreas, string alignment, int? rating)
         {
@@ -90,7 +93,7 @@ namespace FinalProject.Controllers
                 _context.UserPreferences.Remove(found);
                 _context.SaveChanges();
             }
-            return RedirectToAction("InvestmentsIndex");
+            return RedirectToAction("UserSurvey");
         }
         public IActionResult UpdateUserPreferences(int id)
         {
@@ -116,14 +119,14 @@ namespace FinalProject.Controllers
         }
 >>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
 
-        public IActionResult AddToFavorite(string id)
+        public IActionResult AddToFavorite(string name)
         {
             Favorite favorite = new Favorite
             {
-                StartupId = id,
+                StartupName = name,
                 UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
             };
-            if (_context.Favorite.Where(x => (x.StartupId == id) && (x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)).ToList().Count > 0)
+            if (_context.Favorite.Where(x => (x.StartupName == name) && (x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)).ToList().Count > 0)
             {
                 return RedirectToAction("Favorites");
             }
@@ -135,6 +138,9 @@ namespace FinalProject.Controllers
             return RedirectToAction("Favorites");
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f1c630b5a2bfc41e8c67b5367600e61b91b27a45
 
         public IActionResult Favorites()
         {
@@ -143,8 +149,11 @@ namespace FinalProject.Controllers
             return View(thisUsersFavorites);
         }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
+=======
+>>>>>>> f1c630b5a2bfc41e8c67b5367600e61b91b27a45
         public IActionResult RemoveFavorite(int id)
         {
             Favorite found = _context.Favorite.Find(id);
@@ -158,14 +167,16 @@ namespace FinalProject.Controllers
 <<<<<<< HEAD
 =======
 
-
         public IActionResult Individual(string id)
         {
             Record r = sd.GetRecord(id);
             Startups.RateIndividual(r);
             return View(r);
         }
+<<<<<<< HEAD
 
 >>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
+=======
+>>>>>>> f1c630b5a2bfc41e8c67b5367600e61b91b27a45
     }
 }
