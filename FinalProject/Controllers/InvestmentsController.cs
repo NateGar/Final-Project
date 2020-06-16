@@ -97,14 +97,14 @@ namespace FinalProject.Controllers
             return RedirectToAction("InvestmentsIndex", found);
         }
 
-        public IActionResult AddToFavorite(string id)
+        public IActionResult AddToFavorite(string name)
         {
             Favorite favorite = new Favorite
             {
-                StartupId = id,
+                StartupName = name,
                 UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
             };
-            if (_context.Favorite.Where(x => (x.StartupId == id) && (x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)).ToList().Count > 0)
+            if (_context.Favorite.Where(x => (x.StartupName == name) && (x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)).ToList().Count > 0)
             {
                 return RedirectToAction("Favorites");
             }
@@ -115,6 +115,14 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("Favorites");
         }
+
+        public IActionResult Favorites()
+        {
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var thisUsersFavorites = _context.Favorite.Where(x => x.UserId == id).ToList();
+            return View(thisUsersFavorites);
+        }
+
         public IActionResult RemoveFavorite(int id)
         {
             Favorite found = _context.Favorite.Find(id);
@@ -124,6 +132,12 @@ namespace FinalProject.Controllers
                 _context.SaveChanges();
             }
             return RedirectToAction("Favorites", new { id = found.Id });
+        }
+
+        public IActionResult Individual(string id)
+        {
+            Record r = sd.GetRecord(id);
+            return View(r);
         }
     }
 }
