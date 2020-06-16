@@ -78,6 +78,7 @@ namespace FinalProject.Controllers
         public IActionResult Individual(string id)
         {
             Record r = sd.GetRecord(id);
+            Startups.RateIndividual(r);
             return View(r);
         }
     }
