@@ -29,9 +29,15 @@ namespace FinalProject.Controllers
             return View();
         }
         public IActionResult StartupTest()
+<<<<<<< HEAD
         {            
             RootObject s = sd.getStart();                  
                 return View(s);
+=======
+        {
+            RootObject s = sd.getStart();
+            return View(s);
+>>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -39,7 +45,11 @@ namespace FinalProject.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+<<<<<<< HEAD
 
     }
 
+=======
+    }
+>>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
 }

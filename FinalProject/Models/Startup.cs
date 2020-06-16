@@ -54,6 +54,21 @@ namespace FinalProject.Models
 
         public int Rating { get; set; }
 
+<<<<<<< HEAD
+=======
+        public static void RateIndividual(Record r)
+        {
+            int uniqueness;
+            int team;
+            int funding;
+            uniqueness = GetUniquenessRating(r);
+            team = GetTeamRating(r);
+            funding = GetFundingRating(r);
+
+            r.startups.Rating = uniqueness + team + funding;
+
+        }
+>>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
         public static void RateStartups(IEnumerable<Record> startups)
         {
             

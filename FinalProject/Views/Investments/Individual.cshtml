@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@model Startups
 
 <h2>@Model.CompanyName</h2>
@@ -8,3 +9,18 @@
 <p>@Model.Themes</p>
 <p>@Model.Raised</p>
 <p>@Model.TechnologyAreas</p>
+=======
+﻿@model Record
+
+<h2>Startup Name: @Model.startups.CompanyName</h2>
+<h3>City: @Model.startups.City</h3>
+<h3>Country: @Model.startups.Country</h3>
+<p>Company Summary: @Model.startups.TwoLineCompanySummary</p>
+<p>Partner Company Alignment: @Model.startups.Alignment</p>
+<p>Themes: @Model.startups.Themes</p>
+<p>Funding Raised: @Model.startups.Raised</p>
+<p>Technology Areas: @Model.startups.TechnologyAreas</p>
+
+
+<button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName'">Add to Favorites</button>
+>>>>>>> 85b87666efad595407cd8966ae7ed04a3d5518e0
