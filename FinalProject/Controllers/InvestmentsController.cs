@@ -38,14 +38,14 @@ namespace FinalProject.Controllers
         }
 
 
-        public IActionResult AddToFavorite(string id)
+        public IActionResult AddToFavorite(string name)
         {
             Favorite favorite = new Favorite
             {
-                StartupId = id,
+                StartupName = name,
                 UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
             };
-            if (_context.Favorite.Where(x => (x.StartupId == id) && (x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)).ToList().Count > 0)
+            if (_context.Favorite.Where(x => (x.StartupName == name) && (x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)).ToList().Count > 0)
             {
                 return RedirectToAction("Favorites");
             }
