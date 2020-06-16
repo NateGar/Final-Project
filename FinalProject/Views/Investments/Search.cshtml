@@ -1,30 +1,34 @@
 ﻿@model IEnumerable<Record>
 
-    <table class="table">
-        <tr>
-            <th>Company Name</th>
-            <th>Country</th>
-            <th>City</th>
-            <th>Themes</th>
-            <th>Technology Areas</th>
-            <th>Alignment</th>
-            <th>Ranking</th>
-        </tr>
+<table class="table">
+    <tr>
+        <th>Company Name</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Themes</th>
+        <th>Technology Areas</th>
+        <th>Alignment</th>
+        <th>Ranking</th>
+        <th></th>
+        <th></th>
+    </tr>
 
-        @if (Model != null)
+    @if (Model != null)
+    {
+        foreach (Record r in Model)
         {
-            foreach (Record r in Model)
-            {
-                <tr>
-                    <td><a href="/Investments/Individual?id=@r.id">@r.startups.CompanyName</a></td>
-                    <td>@r.startups.Country</td>
-                    <td>@r.startups.City</td>
-                    <td>@r.startups.Themes</td>
-                    <td>@r.startups.TechnologyAreas</td>
-                    <td>@r.startups.Alignment</td>
-                    <td>@r.startups.Rating</td>
-                </tr>
-            }
+            <tr>
+                <td><a href="/Investments/Individual?id=@r.id">@r.startups.CompanyName</a></td>
+                <td>@r.startups.Country</td>
+                <td>@r.startups.City</td>
+                <td>@r.startups.Themes</td>
+                <td>@r.startups.TechnologyAreas</td>
+                <td>@r.startups.Alignment</td>
+                <td>@r.startups.Rating</td>
+                <td>
+                    <a href="/Investments/AddToFavorite?name=@r.startups.CompanyName" class="btn-danger">Add to Favorites</a>
+                </td>
+            </tr>
         }
-    </table>
-        
+    }
+</table>
