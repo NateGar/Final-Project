@@ -151,5 +151,32 @@ namespace FinalProject.Controllers
             Startups.RateIndividual(r);
             return View(r);
         }
+
+        public IActionResult AddComment(int id, string comment)
+        {
+            Favorite found = _context.Favorite.Find(id);
+            if(found != null)
+            {
+                found.PrivateComments = comment;
+                _context.Entry(found).State = EntityState.Modified;
+                _context.Update(found);
+                _context.SaveChanges();
+
+            }
+            return RedirectToAction("Favorites");
+        }
+        public IActionResult RemoveComment(int id)
+        {
+            Favorite found = _context.Favorite.Find(id);
+            if (found != null)
+            {
+                found.PrivateComments = "";
+                _context.Entry(found).State = EntityState.Modified;
+                _context.Update(found);
+                _context.SaveChanges();
+
+            }
+            return RedirectToAction("Favorites");
+        }
     }
 }
