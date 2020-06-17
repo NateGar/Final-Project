@@ -186,5 +186,19 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("Favorites");
         }
+        [Authorize]
+        public IActionResult EditComment(int id, string comment)
+        {
+            Favorite found = _context.Favorite.Find(id);
+            if (found != null)
+            {
+                found.PrivateComments = comment;
+                _context.Entry(found).State = EntityState.Modified;
+                _context.Update(found);
+                _context.SaveChanges();
+
+            }
+            return RedirectToAction("Favorites");
+        }
     }
 }
