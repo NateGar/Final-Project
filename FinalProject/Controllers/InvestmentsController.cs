@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FinalProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,7 @@ namespace FinalProject.Controllers
             return View();
         }
 
+        
         public IActionResult InvestmentsIndex()
         {
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -46,6 +48,7 @@ namespace FinalProject.Controllers
             && (rating == null || x.startups.Rating >= rating));
             return View(found);
         }
+        [Authorize]
         public IActionResult UserSurvey()
         {
             //UserPreferences thisUsersPreferences = _context.UserPreferences.FirstOrDefault();
@@ -53,6 +56,7 @@ namespace FinalProject.Controllers
             var thisUsersPreferences = _context.UserPreferences.Where(x => x.UserId == id).ToList();
             return View(thisUsersPreferences);
         }
+        [Authorize]
         public IActionResult AddUserPreferences(string country, string city, string theme, string technologyAreas, string alignment, int? rating)
         {
             UserPreferences userPreferences = new UserPreferences();
@@ -74,6 +78,7 @@ namespace FinalProject.Controllers
                 return RedirectToAction("InvestmentsIndex");
             }
         }
+        [Authorize]
         public IActionResult RemoveUserPreferences(int id)
         {
             UserPreferences found = _context.UserPreferences.Find(id);
@@ -84,11 +89,13 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("UserSurvey");
         }
+        [Authorize]
         public IActionResult UpdateUserPreferences(int id)
         {
             UserPreferences found = _context.UserPreferences.Find(id);            
             return View(found);
         }
+        [Authorize]
         public IActionResult ChangeUserPreferences(int id, string country, string city, string theme, string technologyAreas, string alignment, int? rating)
         {
             UserPreferences found = _context.UserPreferences.Find(id);
@@ -106,7 +113,7 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("InvestmentsIndex", found);
         }
-
+        [Authorize]
         public IActionResult AddToFavorite(string name, int rating)
         {
             Favorite favorite = new Favorite
@@ -126,14 +133,14 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("Favorites");
         }
-
+        [Authorize]
         public IActionResult Favorites()
         {
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var thisUsersFavorites = _context.Favorite.Where(x => x.UserId == id).ToList();
             return View(thisUsersFavorites);
         }
-
+        [Authorize]
         public IActionResult RemoveFavorite(int id)
         {
             Favorite found = _context.Favorite.Find(id);
@@ -151,7 +158,7 @@ namespace FinalProject.Controllers
             Startups.RateIndividual(r);
             return View(r);
         }
-
+        [Authorize]
         public IActionResult AddComment(int id, string comment)
         {
             Favorite found = _context.Favorite.Find(id);
@@ -165,6 +172,7 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("Favorites");
         }
+        [Authorize]
         public IActionResult RemoveComment(int id)
         {
             Favorite found = _context.Favorite.Find(id);
