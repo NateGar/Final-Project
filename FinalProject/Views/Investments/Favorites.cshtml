@@ -20,9 +20,10 @@
                 <a href="/Investments/RemoveFavorite?id=@fav.Id" class="btn-danger">Remove Favorite</a>
             </td>
             <td>
-                <textarea rows="4" cols="30" name="comment" form="usrform">Add Comments Here</textarea>
+
                 <form action="/Investments/AddComment" id="usrform" method="post">
                     <input type="hidden" name="Id" value="@fav.Id" />
+                    <input type="text" name="comment" /><br/>                    
                     <input type="submit" />
                 </form>
             </td>
