@@ -10,7 +10,7 @@
 <p>Technology Areas: @Model.startups.TechnologyAreas</p>
 <p>Ranking: @Model.startups.Rating</p>
 
-<button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating'">Add to Favorites</button>
+<button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating&id=@Model.id'">Add to Favorites</button>
 
 <form>
     <input type="button" value="back to results" onclick="window.location = document.referrer">

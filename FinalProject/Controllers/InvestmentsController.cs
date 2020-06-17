@@ -114,12 +114,13 @@ namespace FinalProject.Controllers
             return RedirectToAction("InvestmentsIndex", found);
         }
         [Authorize]
-        public IActionResult AddToFavorite(string name, int rating)
+        public IActionResult AddToFavorite(string name, int rating, string id)
         {
             Favorite favorite = new Favorite
             {
                 Rank = rating,
                 StartupName = name,
+                StartupId = id,
                 UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
             };
             if (_context.Favorite.Where(x => (x.StartupName == name) && (x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value)).ToList().Count > 0)

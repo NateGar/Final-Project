@@ -4,15 +4,16 @@
     <tr>
         <th>Name</th>
         <th>Rank</th>
-        <th>Comments</th>
+        <th>Comment</th>
         <th></th>
+        <th>Add/Edit Comment</th>
 
 
     </tr>
     @foreach (var fav in Model)
     {
         <tr>
-            <td>@fav.StartupName</td>
+            <td><a href="/Investments/Individual?id=@fav.StartupId">@fav.StartupName</a></td>
             <td>@fav.Rank</td>
             <td>@fav.PrivateComments</td>
             <td>
