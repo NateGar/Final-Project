@@ -24,15 +24,12 @@
                     <td>@r.startups.TechnologyAreas</td>
                     <td>@r.startups.Alignment</td>
                     <td>@r.startups.Rating</td>
-
                 </tr>                
                 <tr>
                     <td>
-                        <a href="/Investments/AddToFavorite?name=@r.startups.CompanyName&rating=@r.startups.Rating&id=@r.id" class="btn-danger">Add to Favorites</a>
+                        <button onclick="document.location = '/Investments/AddToFavorite?name=@r.startups.CompanyName&rating=@r.startups.Rating&id=@r.id'">Add to Favorites</button>                        
                     </td>
                 </tr>
-
-
             }
             
         }

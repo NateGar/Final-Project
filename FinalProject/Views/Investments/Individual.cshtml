@@ -1,19 +1,34 @@
 @model Record
 
-<h2>Startup Name: @Model.startups.CompanyName</h2>
-<h3>Country: @Model.startups.Country</h3>
-<h3>City: @Model.startups.City</h3>
-<p>Company Summary: @Model.startups.TwoLineCompanySummary</p>
-<p>Partner Company Alignment: @Model.startups.Alignment</p>
-<p>Themes: @Model.startups.Themes</p>
-<p>Funding Raised: @Model.startups.Raised</p>
-<p>Technology Areas: @Model.startups.TechnologyAreas</p>
-<p>Ranking: @Model.startups.Rating</p>
+<table class="table">
+    <tr>
+        <th>Startup Name</th>
+        <th>Country</th>
+        <th>City</th>
+        <th>Company Summary</th>
+        <th>Seamless Alignment</th>
+        <th>Technology Area</th>
+        <th>Theme</th>
+        <th>Rating</th>
+    </tr>
 
-<button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating&id=@Model.id'">Add to Favorites</button>
+    <tr>
+        <td>@Model.startups.CompanyName</td>
+        <td>@Model.startups.Country</td>
+        <td>@Model.startups.City</td>
+        <td>@Model.startups.TwoLineCompanySummary</td>
+        <td>@Model.startups.Alignment</td>
+        <td>@Model.startups.TechnologyAreas</td>
+        <td>@Model.startups.Themes</td>
+        <td>@Model.startups.Rating</td>
+    </tr>
 
-<form>
-    <input type="button" value="back to results" onclick="window.location = document.referrer">
-</form>
+</table>
+
+    <button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating&id=@Model.id'">Add to Favorites</button>
+
+    <form>
+        <input type="button" value="back to results" onclick="window.location = document.referrer">
+    </form>
 
 
