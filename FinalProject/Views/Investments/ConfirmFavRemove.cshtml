@@ -1,0 +1,20 @@
+﻿
+@model Favorite
+<h2 class="alert-danger">Are you sure you would like to delete this Favorite?</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Rank</th>
+        <th>Comment</th>
+        <th></th>
+
+    </tr>
+    <tr>
+        <td>@Model.StartupName</a></td>
+        <td>@Model.Rank</td>
+        <td>@Model.PrivateComments</td>
+    </tr>
+</table>
+<button onclick="document.location = '/Investments/RemoveFavorite?id=@Model.Id'">YES</button>
+<button onclick="window.location = document.referrer">NO</button>
+

@@ -153,6 +153,13 @@ namespace FinalProject.Controllers
             return RedirectToAction("Favorites", new { id = found.Id });
         }
 
+        [Authorize]
+        public IActionResult ConfirmFavRemove(int id)
+        {
+            Favorite toRemove = _context.Favorite.Find(id);
+            return View(toRemove);
+        }
+
         public IActionResult Individual(string id)
         {
             Record r = sd.GetRecord(id);

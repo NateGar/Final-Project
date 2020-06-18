@@ -1,36 +1,36 @@
 @model IEnumerable<Favorite>
 
-<table class="table">
-    <tr>
-        <th>Name</th>
-        <th>Rank</th>
-        <th>Comment</th>
-        <th></th>
-        <th>Add/Edit Comment</th>
+    <div class="text-center">
+        <h1 class="display-4">Favorites</h1>
+    </div>
 
-
-    </tr>
-    @foreach (var fav in Model)
-    {
+    <table class="table">
         <tr>
-            <td><a href="/Investments/Individual?id=@fav.StartupId">@fav.StartupName</a></td>
-            <td>@fav.Rank</td>
-            <td>@fav.PrivateComments</td>
-            <td>
-                <a href="/Investments/RemoveFavorite?id=@fav.Id" class="btn-danger">Remove Favorite</a>
-            </td>
-            <td>
-
-                <form action="/Investments/AddComment" id="usrform" method="post">
-                    <input type="hidden" name="Id" value="@fav.Id" />
-                    <input type="text" name="comment" /><br/>                    
-                    <input type="submit" />
-                </form>
-            </td>
-            <td>
-                <a href="/Investments/RemoveComment?id=@fav.Id" class="btn-danger">Remove Comment</a>
-            </td>
+            <th>Name</th>
+            <th>Rank</th>
+            <th>Comment</th>
+            <th>Add/Edit Comment</th>
         </tr>
-    }
-</table>
+        @foreach (var fav in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Investments/Individual?id=@fav.StartupId">@fav.StartupName</a><br />
+                    <button onclick="document.location = '/Investments/ConfirmFavRemove?id=@fav.Id'">Remove</button>
+                </td>
+                <td>@fav.Rank</td>
+                <td>@fav.PrivateComments</td>
+                <td>
+                    <form action="/Investments/AddComment" id="usrform" method="post">
+                        <input type="hidden" name="Id" value="@fav.Id" />
+                        <input type="text" name="comment" /><br />
+                        <input type="submit" />
+                    </form>
+                </td>
+                <td>
+                    <button onclick="document.location = '/Investments/RemoveComment?id=@fav.Id'">Remove Comment</button>
+                </td>
+            </tr>
+        }
+    </table>
 
