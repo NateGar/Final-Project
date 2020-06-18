@@ -1,36 +1,66 @@
 @model IEnumerable<Favorite>
 
-    <div class="text-center">
-        <h1 class="display-4">Favorites</h1>
-    </div>
+    <body>
 
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Rank</th>
-            <th>Comment</th>
-            <th>Add/Edit Comment</th>
-        </tr>
-        @foreach (var fav in Model)
-        {
-            <tr>
-                <td>
-                    <a href="/Investments/Individual?id=@fav.StartupId">@fav.StartupName</a><br />
-                    <button onclick="document.location = '/Investments/ConfirmFavRemove?id=@fav.Id'">Remove</button>
-                </td>
-                <td>@fav.Rank</td>
-                <td>@fav.PrivateComments</td>
-                <td>
-                    <form action="/Investments/AddComment" id="usrform" method="post">
-                        <input type="hidden" name="Id" value="@fav.Id" />
-                        <input type="text" name="comment" /><br />
-                        <input type="submit" />
-                    </form>
-                </td>
-                <td>
-                    <button onclick="document.location = '/Investments/RemoveComment?id=@fav.Id'">Remove Comment</button>
-                </td>
+
+        <div class="text-center">
+            <h1 class="display-4">Favorites</h1>
+        </div>
+        <label for="myInput">Search for Names, Ranks, or Comments: </label>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Names/Rank/Comments" title="Type in a name/rank/comment">
+        <table class="table" id="myTable">
+            <tr class="header">
+                <th>Name</th>
+                <th>Rank</th>
+                <th>Comment</th>
+                <th>Add/Edit Comment</th>
             </tr>
-        }
-    </table>
+            @foreach (var fav in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="/Investments/Individual?id=@fav.StartupId">@fav.StartupName</a><br />
+                        <button onclick="document.location = '/Investments/ConfirmFavRemove?id=@fav.Id'">Remove</button>
+                    </td>
+                    <td>@fav.Rank</td>
+                    <td>@fav.PrivateComments</td>
+                    <td>
+                        <form action="/Investments/AddComment" id="usrform" method="post">
+                            <input type="hidden" name="Id" value="@fav.Id" />
+                            <input type="text" name="comment" /><br />
+                            <input type="submit" />
+                        </form>
+                    </td>
+                    <td>
+                        <button onclick="document.location = '/Investments/RemoveComment?id=@fav.Id'">Remove Comment</button>
+                    </td>
+                </tr>
+            }
+        </table>
 
+        <script>
+            function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    td2 = tr[i].getElementsByTagName("td")[1];
+                    td3 = tr[i].getElementsByTagName("td")[2];
+                    if (td || td2 || td3) {
+                        txtValue = td.textContent || td.innerText;
+                        txtValue2 = td2.textContent || td2.innerText;
+                        txtValue3 = td3.textContent || td3.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+
+    </body>
