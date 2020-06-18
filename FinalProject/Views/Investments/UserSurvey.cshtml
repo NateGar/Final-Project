@@ -46,13 +46,14 @@
                 <button type="submit" value="Submit">Edit My Preferences</button>
             </form>
             <br />
-            }
-
         }
-else
+
+    }
+    else
     {
-        <h3>Please Fill Out Your Search Preferences:</h3>
-        <h4>Or go to <a href="/Investments/InvestmentsIndex"> Search Page</a></h4>
+        <h5>Please fill out any of the options in the form below to search startup companies based on your preferences.</h5>
+        <h5>Or go to <a href="/Investments/InvestmentsIndex">Main Search Page</a></h5>
+        <h3>Your Search Preferences:</h3>
         <div>
             <form action="/Investments/AddUserPreferences" method="post">
                 <label for="country">Country:</label><br />
@@ -107,8 +108,8 @@ else
                     <option value="Whirlpool">Whirlpool</option>
                 </select><br />
                 <label for="rating">Minimum Rating (1-15):</label><br />
-                <input type="number" name="rating" placeholder="Rating" min="1" max="15"/><br />
-                <br /> <input type="submit" />
+                <input type="number" name="rating" placeholder="Rating" min="1" max="15" /><br />
+                <br /> <input type="submit" value="Save and Search" />
             </form>
         </div>
     }

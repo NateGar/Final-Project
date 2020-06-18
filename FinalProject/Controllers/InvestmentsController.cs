@@ -71,12 +71,32 @@ namespace FinalProject.Controllers
                 userPreferences.Rank = rating;
                 _context.UserPreferences.Add(userPreferences);
                 _context.SaveChanges();
-                return RedirectToAction("InvestmentsIndex", userPreferences);
+                return RedirectToAction("AutoSearch", userPreferences);
             }
             else
             {
                 return RedirectToAction("InvestmentsIndex");
             }
+        }
+        [Authorize]
+        public IActionResult AutoSearch(UserPreferences userPreferences)
+        {
+            string country = userPreferences.Country;
+            string city = userPreferences.City;
+            string theme = userPreferences.Theme;
+            string technologyAreas = userPreferences.TechArea;
+            string alignment = userPreferences.Alignment;
+            int? rating = userPreferences.Rank;
+            IEnumerable<Record> s = sd.getStart().records;
+            Startups.RateStartups(s);
+            IEnumerable<Record> found = s.Where(x =>
+            (string.IsNullOrWhiteSpace(country) || x.startups.Country.ToLower() == country.ToLower())
+            && (string.IsNullOrWhiteSpace(city) || x.startups.City == city)
+            && (string.IsNullOrWhiteSpace(theme) || x.startups.Themes != null && x.startups.Themes.Contains(theme))
+            && (string.IsNullOrWhiteSpace(technologyAreas) || x.startups.TechnologyAreas != null && x.startups.TechnologyAreas.Contains(technologyAreas))
+            && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment != null && x.startups.Alignment.Contains(alignment))
+            && (rating == null || x.startups.Rating >= rating));
+            return View("Search", found);
         }
         [Authorize]
         public IActionResult RemoveUserPreferences(int id)
