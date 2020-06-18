@@ -208,5 +208,10 @@ namespace FinalProject.Controllers
             }
             return RedirectToAction("Favorites");
         }
+        public IActionResult ConfirmCommentRemove(int id)
+        {
+            Favorite toRemove = _context.Favorite.Find(id);
+            return View(toRemove);
+        }
     }
 }
