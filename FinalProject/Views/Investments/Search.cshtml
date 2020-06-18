@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Record>
 
-<table class="table">
+<table id="myTable" class="table">
     <tr>
-        <th>Company Name</th>
-        <th>Country</th>
-        <th>City</th>
-        <th>Themes</th>
-        <th>Technology Areas</th>
-        <th>Alignment</th>
-        <th>Ranking</th>
+        <th onclick="sortTable(0)">Company Name</th>
+        <th onclick="sortTable(1)">Country</th>
+        <th onclick="sortTable(2)">City</th>
+        <th onclick="sortTable(3)">Themes</th>
+        <th onclick="sortTable(4)">Technology Areas</th>
+        <th onclick="sortTable(5)">Alignment</th>
+        <th onclick="sortTable(6)">Ranking</th>
     </tr>
 
     @if (Model.Count() > 0)
@@ -16,6 +16,7 @@
         foreach (Record r in Model)
             @if (Model != null)
             {
+                string newRating = r.startups.Rating.ToString("00");
                 <tr>
                     <td><a href="/Investments/Individual?id=@r.id">@r.startups.CompanyName</a></td>
                     <td>@r.startups.Country</td>
@@ -23,13 +24,11 @@
                     <td>@r.startups.Themes</td>
                     <td>@r.startups.TechnologyAreas</td>
                     <td>@r.startups.Alignment</td>
-                    <td>@r.startups.Rating</td>
-                </tr>                
-                <tr>
+                    <td>@newRating</td>
                     <td>
                         <button onclick="document.location = '/Investments/AddToFavorite?name=@r.startups.CompanyName&rating=@r.startups.Rating&id=@r.id'">Add to Favorites</button>                        
                     </td>
-                </tr>
+                </tr>  
             }
             
         }
@@ -38,3 +37,41 @@
 {
     <p>Sorry, no companies found under those terms. Would you like to <a href="/Investments/InvestmentsIndex">go back to the Search Page</a></p>
 }
+<script>
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("myTable");
+        switching = true;
+        dir = "asc";
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>
