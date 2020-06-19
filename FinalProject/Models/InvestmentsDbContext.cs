@@ -1,7 +1,6 @@
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 namespace FinalProject.Models
 {
@@ -10,11 +9,10 @@ namespace FinalProject.Models
         public InvestmentsDbContext()
         {
         }
-        private readonly string Connection;
-        public InvestmentsDbContext(DbContextOptions<InvestmentsDbContext> options, IConfiguration configuration)
+
+        public InvestmentsDbContext(DbContextOptions<InvestmentsDbContext> options)
             : base(options)
         {
-            Connection = configuration.GetSection("ConnectionStrings")["DefaultConnection"];
         }
 
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
@@ -24,6 +22,7 @@ namespace FinalProject.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Comments> Comments { get; set; }
         public virtual DbSet<Favorite> Favorite { get; set; }
         public virtual DbSet<UserPreferences> UserPreferences { get; set; }
 
@@ -32,7 +31,7 @@ namespace FinalProject.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(Connection);
+                optionsBuilder.UseSqlServer("Server=startupinvestmentrelations.database.windows.net,1433;Database=InvestmentsDb;User ID=Admin123;Password=Final123;Trusted_Connection=False;Encrypt=True;");
             }
         }
 
@@ -136,9 +135,21 @@ namespace FinalProject.Models
                 entity.Property(e => e.UserName).HasMaxLength(256);
             });
 
+            modelBuilder.Entity<Comments>(entity =>
+            {
+                entity.Property(e => e.Comment).HasMaxLength(500);
+
+                entity.HasOne(d => d.Favorite)
+                    .WithMany(p => p.Comments)
+                    .HasForeignKey(d => d.FavoriteId)
+                    .HasConstraintName("FK__Comments__Favori__68487DD7");
+            });
+
             modelBuilder.Entity<Favorite>(entity =>
             {
                 entity.Property(e => e.PrivateComments).HasMaxLength(500);
+
+                entity.Property(e => e.StartupId).HasMaxLength(30);
 
                 entity.Property(e => e.StartupName)
                     .IsRequired()

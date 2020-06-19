@@ -159,6 +159,12 @@ namespace FinalProject.Controllers
         {
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var thisUsersFavorites = _context.Favorite.Where(x => x.UserId == id).ToList();
+
+            foreach(Favorite f in thisUsersFavorites)
+            {
+                f.Comments = _context.Comments.Where(x => x.FavoriteId == f.Id).ToList();
+            }           
+
             return View(thisUsersFavorites);
         }
         [Authorize]
@@ -197,18 +203,23 @@ namespace FinalProject.Controllers
                 _context.Update(found);
                 _context.SaveChanges();
 
+                _context.Comments.Add(new Comments
+                {
+                    Comment = comment,
+                    FavoriteId = id
+                });
+
+                _context.SaveChanges();
             }
             return RedirectToAction("Favorites");
         }
         [Authorize]
         public IActionResult RemoveComment(int id)
         {
-            Favorite found = _context.Favorite.Find(id);
+            Comments found = _context.Comments.Find(id);
             if (found != null)
             {
-                found.PrivateComments = "";
-                _context.Entry(found).State = EntityState.Modified;
-                _context.Update(found);
+                _context.Comments.Remove(found);
                 _context.SaveChanges();
 
             }
@@ -230,7 +241,7 @@ namespace FinalProject.Controllers
         }
         public IActionResult ConfirmCommentRemove(int id)
         {
-            Favorite toRemove = _context.Favorite.Find(id);
+            Comments toRemove = _context.Comments.Find(id);
             return View(toRemove);
         }
     }

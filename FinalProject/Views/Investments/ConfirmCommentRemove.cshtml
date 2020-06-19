@@ -1,6 +1,6 @@
-﻿@model FinalProject.Models.Favorite
+﻿@model FinalProject.Models.Comments
 
 <h2 class="alert-danger">Are you sure you would like to delete this comment?</h2>
-<h5>@Model.PrivateComments</h5>
+<h5>@Model.Comment</h5>
 <button onclick="document.location = '/Investments/RemoveComment?id=@Model.Id'">YES</button>
 <button onclick="window.location = document.referrer">NO</button>

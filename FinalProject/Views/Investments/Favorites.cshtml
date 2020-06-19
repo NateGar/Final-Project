@@ -13,7 +13,7 @@
                 <th>Name</th>
                 <th>Rank</th>
                 <th>Comment</th>
-                <th>Add/Edit Comment</th>
+                <th>Add Comment</th>
             </tr>
             @foreach (var fav in Model)
             {
@@ -23,7 +23,17 @@
                         <button onclick="document.location = '/Investments/ConfirmFavRemove?id=@fav.Id'">Remove</button>
                     </td>
                     <td>@fav.Rank</td>
-                    <td>@fav.PrivateComments</td>
+                    <td>
+                        @{
+                            foreach (Comments c in fav.Comments)
+                            {
+
+                                @c.Comment  
+                                <button onclick="document.location = '/Investments/ConfirmCommentRemove?id=@c.Id'">Remove Comment</button>
+                               <br>
+                              }                                     
+                         }
+                      </td>
                     <td>
                         <form action="/Investments/AddComment" id="usrform" method="post">
                             <input type="hidden" name="Id" value="@fav.Id" />
@@ -31,9 +41,7 @@
                             <input type="submit" />
                         </form>
                     </td>
-                    <td>
-                        <button onclick="document.location = '/Investments/ConfirmCommentRemove?id=@fav.Id'">Remove Comment</button>
-                    </td>
+                    
                 </tr>
             }
         </table>
