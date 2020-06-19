@@ -139,6 +139,8 @@ namespace FinalProject.Models
             {
                 entity.Property(e => e.Comment).HasMaxLength(500);
 
+                entity.Property(e => e.CompanyName).HasMaxLength(50);
+
                 entity.HasOne(d => d.Favorite)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.FavoriteId)

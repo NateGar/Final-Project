@@ -26,7 +26,7 @@ namespace FinalProject.Controllers
             return View();
         }
 
-        
+
         public IActionResult InvestmentsIndex()
         {
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -112,7 +112,7 @@ namespace FinalProject.Controllers
         [Authorize]
         public IActionResult UpdateUserPreferences(int id)
         {
-            UserPreferences found = _context.UserPreferences.Find(id);            
+            UserPreferences found = _context.UserPreferences.Find(id);
             return View(found);
         }
         [Authorize]
@@ -160,10 +160,10 @@ namespace FinalProject.Controllers
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var thisUsersFavorites = _context.Favorite.Where(x => x.UserId == id).ToList();
 
-            foreach(Favorite f in thisUsersFavorites)
+            foreach (Favorite f in thisUsersFavorites)
             {
                 f.Comments = _context.Comments.Where(x => x.FavoriteId == f.Id).ToList();
-            }           
+            }
 
             return View(thisUsersFavorites);
         }
@@ -190,13 +190,16 @@ namespace FinalProject.Controllers
         {
             Record r = sd.GetRecord(id);
             Startups.RateIndividual(r);
+            
+                r.startups.Comments = _context.Comments.Where(x => x.CompanyName == r.startups.CompanyName && x.FavoriteId == null).ToList();
+            
             return View(r);
         }
         [Authorize]
         public IActionResult AddComment(int id, string comment)
         {
             Favorite found = _context.Favorite.Find(id);
-            if(found != null)
+            if (found != null)
             {
                 found.PrivateComments = comment;
                 _context.Entry(found).State = EntityState.Modified;
@@ -243,6 +246,24 @@ namespace FinalProject.Controllers
         {
             Comments toRemove = _context.Comments.Find(id);
             return View(toRemove);
+        }
+       
+        public IActionResult AddPublicComment(string companyName)
+        {
+           
+            return View((object) companyName);
+        }
+        
+        public IActionResult AddPublicComments(string companyName, string comment)
+        {
+            _context.Comments.Add(new Comments
+            {
+                Comment = comment,
+                CompanyName = companyName
+            });
+
+            _context.SaveChanges();
+            return RedirectToAction("Search");
         }
     }
 }

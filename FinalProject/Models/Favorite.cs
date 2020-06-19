@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FinalProject.Models
 {
@@ -15,6 +16,7 @@ namespace FinalProject.Models
         public string UserId { get; set; }
         public string StartupId { get; set; }
         public string PrivateComments { get; set; }
+
         public virtual AspNetUsers User { get; set; }
         public virtual ICollection<Comments> Comments { get; set; }
     }
