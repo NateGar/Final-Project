@@ -57,26 +57,15 @@
         <div>
             <form action="/Investments/AddUserPreferences" method="post">
                 <label for="country">Country:</label><br />
-                <select id="country" name="country">
-                    <option value="">Any</option>
-                    <option value="USA">USA</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Canada">Canada</option>
-                    <option value="China">China</option>
-                    <option value="Denmark">Denmark</option>
-                    <option value="Finland">Finland</option>
-                    <option value="France">France</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Israel">Israel</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="Portugal">Portugal</option>
-                    <option value="Russia">Russia</option>
-                    <option value="Sinagpore">Singapore</option>
-                    <option value="Spain">Spain</option>
-                    <option value="United Kingdom">United Kingdom</option>
+                <select id="countrySel" size="1" name="country">
+                    <option value="" selected="selected">-- Select Country --</option>
                 </select>
-                <input type="text" name="city" placeholder="City" /><br />
+                <br>
+                <label for="city">City:</label><br />
+                <select id="citySel" size="1" name="city">
+                    <option value="" selected="selected">-- Select City--</option>
+                </select>
+                <br>
                 <label for="theme">Theme:</label><br />
                 <select id="theme" name="theme">
                     <option value="">Any</option>
@@ -114,3 +103,93 @@
         </div>
     }
 }
+<script>
+    var countryStateInfo = {
+        "USA": {
+            "Ann Arbor": {},
+            "Atlanta": {},
+            "Boston": {},
+            "Chicago": {},
+            "Grand Rapids": {},
+            "New Jersey": {},
+            "New York": {},
+            "Philadelphia": {},
+            "Sacremento": {},
+            "Salt Lake City": {},
+            "San Jose": {},
+            "Seattle": {},
+            "Silicon Valley": {},
+            "Tampa": {}
+        },
+        "Australia": {
+            "Sydney": {}
+        },
+        "Canada": {
+            "Toronto": {},
+            "Vancouver": {}
+        },
+        "China": {
+            "Hong Kong": {},
+            "Shenzhen": {}
+        },
+        "Denmark": {
+        },
+        "Finland": {
+            "Helsinki": {}
+        },
+        "France": {
+            "Paris": {},
+            "Nice": {}
+        },
+        "Germany": {
+            "Berlin": {}
+        },
+        "Israel": {
+            "Tel Aviv": {}
+        },
+        "Japan": {
+            "Tokyo": {}
+        },
+        "Mexico": {
+            "Mexico City": {}
+        },
+        "Portugal": {
+            "Libson": {}
+        },
+        "Russia": {
+            "Moscow": {}
+        },
+        "Sinagpore": {
+        },
+        "Spain": {
+            "Barcelona": {}
+        },
+        "United Kingdom": {
+            "London": {},
+            "Bristol": {}
+        }
+    }
+
+
+    window.onload = function () {
+
+        var countrySel = document.getElementById("countrySel");
+        var citySel = document.getElementById("citySel");
+
+        for (var country in countryStateInfo) {
+            countrySel.options[countrySel.options.length] = new Option(country, country);
+        }
+
+        countrySel.onchange = function () {
+
+            citySel.length = 1; 
+
+            if (this.selectedIndex < 1)
+                return; 
+
+            for (var city in countryStateInfo[this.value]) {
+                citySel.options[citySel.options.length] = new Option(city, city);
+            }
+        }
+    }
+</script>
