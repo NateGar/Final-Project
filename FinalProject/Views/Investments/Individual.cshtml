@@ -1,31 +1,23 @@
 @model Record
 
-<table class="table">
-    <tr>
-        <th>Startup Name</th>
-        <th>Country</th>
-        <th>City</th>
-        <th>Company Summary</th>
-        <th>Seamless Alignment</th>
-        <th>Technology Area</th>
-        <th>Theme</th>
-        <th>Rating</th>
-    </tr>
 
-    <tr>
-        <td>@Model.startups.CompanyName</td>
-        <td>@Model.startups.Country</td>
-        <td>@Model.startups.City</td>
-        <td>@Model.startups.TwoLineCompanySummary</td>
-        <td>@Model.startups.Alignment</td>
-        <td>@Model.startups.TechnologyAreas</td>
-        <td>@Model.startups.Themes</td>
-        <td>@Model.startups.Rating</td>
-    </tr>
 
-</table>
 
-    <button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating&id=@Model.id'">Add to Favorites</button>
-    <button onclick="window.location = document.referrer">Back to Results</button>
-   
+<h1>@Model.startups.CompanyName</h1>
+<h2>Invetment Strategy rating: @Model.startups.Rating</h2>
+<h3>Company website: @Model.startups.CompanyWebsite</h3>
+<h3>Location: @Model.startups.City, @Model.startups.Country</h3>
+<h4>Seamless Alignment: @Model.startups.Alignment</h4>
+<h4>Technology Area: @Model.startups.TechnologyAreas</h4>
+<h4>Themes: @Model.startups.Themes</h4>
+<h5>Company Summary: @Model.startups.TwoLineCompanySummary</h5>
+<h5>Total Funds Raised: @Model.startups.Raised</h5>
+<h5>Iteration Stage: @Model.startups.Stage</h5>
+
+
+
+
+<button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating&id=@Model.id'">Add to Favorites</button>
+<button onclick="window.location = document.referrer">Back to Results</button>
+
 
