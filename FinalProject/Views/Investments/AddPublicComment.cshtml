@@ -1,0 +1,7 @@
+﻿@model object
+
+    <form action="/Investments/AddPublicComments" id="usrform" method="post">
+        <input type="hidden" name="companyName" value="@Model.ToString()" />
+        <input type="text" name="comment" /><br />
+        <input type="submit" />
+    </form>

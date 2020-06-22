@@ -10,10 +10,11 @@ namespace FinalProject.Models
         public InvestmentsDbContext()
         {
         }
-
-        public InvestmentsDbContext(DbContextOptions<InvestmentsDbContext> options)
+        private readonly string Connection;
+        public InvestmentsDbContext(DbContextOptions<InvestmentsDbContext> options, IConfiguration configuration)
             : base(options)
         {
+            Connection = configuration.GetSection("ConnectionStrings")["DefaultConnection"];
         }
         private readonly string Connection;
         public InvestmentsDbContext(DbContextOptions<InvestmentsDbContext> options, IConfiguration configuration)
@@ -145,6 +146,8 @@ namespace FinalProject.Models
             modelBuilder.Entity<Comments>(entity =>
             {
                 entity.Property(e => e.Comment).HasMaxLength(500);
+
+                entity.Property(e => e.CompanyName).HasMaxLength(50);
 
                 entity.HasOne(d => d.Favorite)
                     .WithMany(p => p.Comments)

@@ -13,8 +13,18 @@
 <h5>Company Summary: @Model.startups.TwoLineCompanySummary</h5>
 <h5>Total Funds Raised: @Model.startups.Raised</h5>
 <h5>Iteration Stage: @Model.startups.Stage</h5>
+@{
+    foreach (Comments c in Model.startups.Comments)
+    {
+
+        <h5> Public Comment: @c.Comment</h5>
+
+        <br>
+    }
+}
 
 
+<button onclick="document.location = '/Investments/AddPublicComment?companyName=@Model.startups.CompanyName'">Add Public Comment</button>
 
 
 <button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating&id=@Model.id'">Add to Favorites</button>

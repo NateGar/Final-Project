@@ -53,6 +53,7 @@ namespace FinalProject.Models
         public string StateProvince { get; set; }
 
         public int Rating { get; set; }
+        public virtual ICollection<Comments> Comments { get; set; }
 
         public static void RateIndividual(Record r)
         {
