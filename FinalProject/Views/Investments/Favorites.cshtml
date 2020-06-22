@@ -10,20 +10,20 @@
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Names/Rank/Comments" title="Type in a name/rank/comment">
         <table class="table" id="myTable">
             <tr class="header">
-                <th>Name</th>
-                <th>Rank</th>
-                <th>Private Comment</th>
-                <th>Add Comment</th>
+                <th class="hideheader">Name</th>
+                <th class="hideheader">Rank</th>
+                <th class="hideheader">Private Comment</th>
+                <th class="hideheader">Add Comment</th>
             </tr>
             @foreach (var fav in Model)
             {
                 <tr>
-                    <td>
+                    <td class="td2">
                         <a href="/Investments/Individual?id=@fav.StartupId">@fav.StartupName</a><br />
                         <button onclick="document.location = '/Investments/ConfirmFavRemove?id=@fav.Id'">Remove</button>
                     </td>
-                    <td>@fav.Rank</td>
-                    <td>
+                    <td class="td2">@fav.Rank</td>
+                    <td class="td2">
                         @{
                             foreach (Comments c in fav.Comments)
                             {

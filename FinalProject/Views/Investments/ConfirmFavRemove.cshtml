@@ -3,16 +3,16 @@
 <h2 class="alert-danger">Are you sure you would like to delete this Favorite?</h2>
 <table class="table">
     <tr>
-        <th>Name</th>
-        <th>Rank</th>
-        <th>Comment</th>
+        <th class="hideheader">Name</th>
+        <th class="hideheader">Rank</th>
+        <th class="hideheader">Comment</th>
         <th></th>
 
     </tr>
     <tr>
-        <td>@Model.StartupName</a></td>
-        <td>@Model.Rank</td>
-        <td>@Model.PrivateComments</td>
+        <td class="td2">@Model.StartupName</a></td>
+        <td class="td2">@Model.Rank</td>
+        <td class="td2">@Model.PrivateComments</td>
     </tr>
 </table>
 <button onclick="document.location = '/Investments/RemoveFavorite?id=@Model.Id'">YES</button>

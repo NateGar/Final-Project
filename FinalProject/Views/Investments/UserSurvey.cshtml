@@ -5,22 +5,22 @@
         <h3>My Search Preferences:</h3>
         <table class="table">
             <tr>
-                <th>Country</th>
-                <th>City</th>
-                <th>Technology Area</th>
-                <th>Seamless Alignment</th>
-                <th>Theme</th>
-                <th>Rating</th>
+                <th class="hideheader">Country</th>
+                <th class="hideheader">City</th>
+                <th class="hideheader">Technology Area</th>
+                <th class="hideheader">Seamless Alignment</th>
+                <th class="hideheader">Theme</th>
+                <th class="hideheader">Rating</th>
             </tr>
             @foreach (UserPreferences u in Model)
             {
                 <tr>
-                    <td>@u.Country</td>
-                    <td>@u.City</td>
-                    <td>@u.TechArea</td>
-                    <td>@u.Alignment</td>
-                    <td>@u.Theme</td>
-                    <td>@u.Rank</td>
+                    <td class="td3">@u.Country</td>
+                    <td class="td3">@u.City</td>
+                    <td class="td3">@u.TechArea</td>
+                    <td class="td3">@u.Alignment</td>
+                    <td class="td3">@u.Theme</td>
+                    <td class="td3">@u.Rank</td>
                 </tr>
             }
         </table>
