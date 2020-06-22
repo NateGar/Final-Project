@@ -171,6 +171,11 @@ namespace FinalProject.Controllers
         public IActionResult RemoveFavorite(int id)
         {
             Favorite found = _context.Favorite.Find(id);
+            List<Comments> toDelete = _context.Comments.Where(x => x.FavoriteId == id).ToList();
+            foreach (Comments c in toDelete)
+            {
+                _context.Comments.Remove(c);
+            }
             if (found != null)
             {
                 _context.Favorite.Remove(found);
