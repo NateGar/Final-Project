@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace FinalProject.Models
 {
@@ -9,10 +10,11 @@ namespace FinalProject.Models
         public InvestmentsDbContext()
         {
         }
-
-        public InvestmentsDbContext(DbContextOptions<InvestmentsDbContext> options)
+        private readonly string Connection;
+        public InvestmentsDbContext(DbContextOptions<InvestmentsDbContext> options, IConfiguration configuration)
             : base(options)
         {
+            Connection = configuration.GetSection("ConnectionStrings")["DefaultConnection"];
         }
 
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
@@ -31,7 +33,7 @@ namespace FinalProject.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=startupinvestmentrelations.database.windows.net,1433;Database=InvestmentsDb;User ID=Admin123;Password=Final123;Trusted_Connection=False;Encrypt=True;");
+                optionsBuilder.UseSqlServer(Connection);
             }
         }
 
