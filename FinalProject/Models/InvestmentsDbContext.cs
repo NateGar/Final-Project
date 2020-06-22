@@ -16,12 +16,6 @@ namespace FinalProject.Models
         {
             Connection = configuration.GetSection("ConnectionStrings")["DefaultConnection"];
         }
-        private readonly string Connection;
-        public InvestmentsDbContext(DbContextOptions<InvestmentsDbContext> options, IConfiguration configuration)
-            : base(options)
-        {
-            Connection = configuration.GetSection("ConnectionStrings")["DefaultConnection"];
-        }
 
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
