@@ -11,6 +11,7 @@
         <th onclick="sortTable(4)">Technology Areas</th>
         <th onclick="sortTable(5)">Alignment</th>
         <th onclick="sortTable(6)">Ranking</th>
+        <th onclick="sortTable(7)">Public Comments</th>
 
     </tr>
 
@@ -28,6 +29,15 @@
                     <td>@r.startups.TechnologyAreas</td>
                     <td>@r.startups.Alignment</td>
                     <td>@newRating</td>
+                    <td>
+                        @{
+                            foreach (Comments c in r.startups.Comments)
+                            {
+                                 <p> @c.Comment </p> <br />
+                            }
+                         }
+                            
+                    </td>
                     <td>
                         <button onclick="document.location = '/Investments/AddToFavorite?name=@r.startups.CompanyName&rating=@r.startups.Rating&id=@r.id'">Add to Favorites</button>
                     </td>
@@ -90,7 +100,8 @@
             td5 = tr[i].getElementsByTagName("td")[4];
             td6 = tr[i].getElementsByTagName("td")[5];
             td7 = tr[i].getElementsByTagName("td")[6];
-            if (td || td2 || td3 || td4 || td5 || td6 || td7) {
+            td8 = tr[i].getElementsByTagName("td")[7];
+            if (td || td2 || td3 || td4 || td5 || td6 || td7 || td8) {
                 txtValue = td.textContent || td.innerText;
                 txtValue2 = td2.textContent || td2.innerText;
                 txtValue3 = td3.textContent || td3.innerText;
@@ -98,8 +109,9 @@
                 txtValue5 = td5.textContent || td5.innerText;
                 txtValue6 = td6.textContent || td6.innerText;
                 txtValue7 = td7.textContent || td7.innerText;
+                txtValue8 = td8.textContent || td8.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1
-                    || txtValue4.toUpperCase().indexOf(filter) > -1 || txtValue5.toUpperCase().indexOf(filter) > -1 || txtValue6.toUpperCase().indexOf(filter) > -1 || txtValue7.toUpperCase().indexOf(filter) > -1) {
+                    || txtValue4.toUpperCase().indexOf(filter) > -1 || txtValue5.toUpperCase().indexOf(filter) > -1 || txtValue6.toUpperCase().indexOf(filter) > -1 || txtValue7.toUpperCase().indexOf(filter) > -1 || txtValue8.toUpperCase().indexOf(filter) > -1) {
                     tr[i].style.display = "";
                 } else {
                     tr[i].style.display = "none";

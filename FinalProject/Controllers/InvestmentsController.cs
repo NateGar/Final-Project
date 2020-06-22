@@ -46,6 +46,10 @@ namespace FinalProject.Controllers
             && (string.IsNullOrWhiteSpace(technologyAreas) || x.startups.TechnologyAreas != null && x.startups.TechnologyAreas.Contains(technologyAreas))
             && (string.IsNullOrWhiteSpace(alignment) || x.startups.Alignment != null && x.startups.Alignment.Contains(alignment))
             && (rating == null || x.startups.Rating >= rating));
+            foreach (Record r in found)
+            {
+                r.startups.Comments = _context.Comments.Where(x => x.CompanyName == r.startups.CompanyName && x.FavoriteId == null).ToList();
+            }
             return View(found);
         }
         [Authorize]

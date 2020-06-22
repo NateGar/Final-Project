@@ -1,33 +1,57 @@
 @model Record
 
+<h1>@Model.startups.CompanyName</h1><br />
+<h2 style="color:green">Invetment Strategy Rating: @Model.startups.Rating</h2>
+<h4>Company Website: @Model.startups.CompanyWebsite</h4>
+<h4>Location: @Model.startups.City, @Model.startups.Country</h4><br />
+<div>
+ <h3>Company Information:</h3>
+    <ul>
+        @if (Model.startups.Alignment != null)
+        {
+            <li>This startup is aligned with these Seamless Companies: @Model.startups.Alignment</li>
+        }
+        else
+        {
+            <li> This startup is not aligned with any Seamless Companies yet.</li>
+        }
+        @if (Model.startups.TechnologyAreas != null)
+        {
+            <li>Technology Area: @Model.startups.TechnologyAreas</li>
+        }
+        else 
+        { 
+            <li>Technology Area: None currently listed</li>
+        }
+        <li>Themes: @Model.startups.Themes</li>
+        <li>Company Summary: @Model.startups.TwoLineCompanySummary</li>
+        <li>Total Funds Raised: @Model.startups.Raised</li>
+   </ul>
+</div><br />
 
+<div>
+    <h4>Public Comments:</h4>
+    <ul>
+        @if (Model.startups.Comments.Count > 0)
+        {
+       @foreach (Comments c in Model.startups.Comments)
+       {
 
+        <li> @c.Comment</li>
 
-<h1>@Model.startups.CompanyName</h1>
-<h2>Invetment Strategy rating: @Model.startups.Rating</h2>
-<h3>Company website: @Model.startups.CompanyWebsite</h3>
-<h3>Location: @Model.startups.City, @Model.startups.Country</h3>
-<h4>Seamless Alignment: @Model.startups.Alignment</h4>
-<h4>Technology Area: @Model.startups.TechnologyAreas</h4>
-<h4>Themes: @Model.startups.Themes</h4>
-<h5>Company Summary: @Model.startups.TwoLineCompanySummary</h5>
-<h5>Total Funds Raised: @Model.startups.Raised</h5>
-<h5>Iteration Stage: @Model.startups.Stage</h5>
-@{
-    foreach (Comments c in Model.startups.Comments)
-    {
-
-        <h5> Public Comment: @c.Comment</h5>
-
-        <br>
-    }
-}
-
+       }
+        }
+        else
+        {
+            <li>No public comments yet.</li>
+        }
+    </ul>
+</div>
+    
 
 <button onclick="document.location = '/Investments/AddPublicComment?companyName=@Model.startups.CompanyName'">Add Public Comment</button>
 
 
 <button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating&id=@Model.id'">Add to Favorites</button>
 <button onclick="window.location = document.referrer">Back to Results</button>
-
 
