@@ -1,4 +1,14 @@
 ﻿@model UserPreferences
+    <head>
+        <style>
+            .button {
+                background-color: green;
+                color: white;
+                border: 2px solid black;
+                border-radius: 4px
+            }
+        </style>
+    </head>
 
     <div>
         <form action="/Investments/ChangeUserPreferences" method="post">
@@ -46,7 +56,7 @@
             <input type="number" name="rating" placeholder="Rating" value="@Model.Rank" /><br />
             <br />
             <input type="hidden" name="id" value="@Model.Id" />
-            <input type="submit" />
+            <input class="button" type="submit" />
         </form>
     </div>
     <script>

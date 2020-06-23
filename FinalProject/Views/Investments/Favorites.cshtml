@@ -1,4 +1,29 @@
 @model IEnumerable<Favorite>
+    <head>
+        <style>
+            .button {
+                font-size: 10px;
+                float: right;
+                background-color: green;
+                color: white;
+                border: 2px solid black;
+                border-radius: 4px
+            }
+            .button1 {
+                font-size: 10px;
+                background-color: green;
+                color: white;
+                border: 2px solid black;
+                border-radius: 4px
+            }
+            .button2 {
+                background-color: green;
+                color: white;
+                border: 2px solid black;
+                border-radius: 4px
+            }
+        </style>
+    </head>
 
     <body>
 
@@ -20,7 +45,7 @@
                 <tr>
                     <td class="td2">
                         <a href="/Investments/Individual?id=@fav.StartupId">@fav.StartupName</a><br />
-                        <button onclick="document.location = '/Investments/ConfirmFavRemove?id=@fav.Id'">Remove</button>
+                        <button class="button1" onclick="document.location = '/Investments/ConfirmFavRemove?id=@fav.Id'">Remove</button>
                     </td>
                     <td class="td2">@fav.Rank</td>
                     <td class="td2">
@@ -28,23 +53,24 @@
                             foreach (Comments c in fav.Comments)
                             {
 
-                                @c.Comment  
-                                <button onclick="document.location = '/Investments/ConfirmCommentRemove?id=@c.Id'">Remove Comment</button>
-                               <br>
-                              }                                     
-                         }
-                      </td>
+                                @c.Comment
+                                <button class="button" onclick="document.location = '/Investments/ConfirmCommentRemove?id=@c.Id'">Remove</button>
+                                <br>
+                            }
+                        }
+                    </td>
                     <td>
                         <form action="/Investments/AddComment" id="usrform" method="post">
                             <input type="hidden" name="Id" value="@fav.Id" />
-                            <textarea class="gui-textarea" id="comment" name="comment" placeholder="Enter Comment..."></textarea>
-                            <input type="submit" />
+                            <textarea class="gui-textarea" id="comment" name="comment" placeholder="Enter Comment..."></textarea><br />
+                            <input class="button1" type="submit" />
                         </form>
                     </td>
-                    
+
                 </tr>
             }
         </table>
+        <button class="button2" onclick="document.location = '/Investments/InvestmentsIndex'">Back to Home</button>
 
         <script>
             function myFunction() {
