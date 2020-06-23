@@ -10,10 +10,10 @@
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Names/Rank/Comments" title="Type in a name/rank/comment">
         <table class="table" id="myTable">
             <tr class="header">
-                <th class="hideheader">Name</th>
-                <th class="hideheader">Rank</th>
-                <th class="hideheader">Private Comment</th>
-                <th class="hideheader">Add Comment</th>
+                <th class="hideheader" style="cursor:pointer">Name</th>
+                <th class="hideheader" style="cursor:pointer">Rank</th>
+                <th class="hideheader" style="cursor:pointer">Private Comment</th>
+                <th class="hideheader" style="cursor:pointer">Add Comment</th>
             </tr>
             @foreach (var fav in Model)
             {
