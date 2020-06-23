@@ -2,6 +2,16 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<head>
+    <style>
+        .button {
+            background-color: green;
+            color: white;
+            border: 2px solid black;
+            border-radius: 4px
+        }
+    </style>
+</head>
 
 <div class="text-center">
     <h2 class="display-4">Welcome to Startup Investment Relations</h2><br />
@@ -21,7 +31,7 @@
                 <input type="hidden" name="technologyAreas" value="@u.TechArea" />
                 <input type="hidden" name="alignment" value="@u.Alignment" />
                 <input type="hidden" name="rating" value="@u.Rank" />
-                <button type="submit" value="Submit">Search Using Preferences</button>
+                <button class="button" type="submit" value="Submit">Search Using Preferences</button>
             </form>
         }
     </div>
@@ -72,7 +82,7 @@
         </select><br />
         <label for="rating">Minimum Rating (1-15):</label><br />
         <input type="number" name="rating" placeholder="Rating" min="1" max="15" /><br />
-        <br /><input type="submit" /><br />
+        <br /><input class="button" type="submit" /><br />
     </form>
 </div>
 

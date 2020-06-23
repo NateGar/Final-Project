@@ -1,5 +1,15 @@
 ﻿
 @model IEnumerable<Record>
+    <head>
+        <style>
+            .button {
+                background-color: green;
+                color: white;
+                border: 2px solid black;
+                border-radius: 4px
+            }
+        </style>
+    </head>
 <label for="myInput">Further filter your search: </label>
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter search" title="Type in a keyword">
 <p class="hideheader">To sort each column click on the column name.  The first time you click on the column name, the column will be sorted in ascending order.  If you click on the column name again, the column will be sorted in descending order. </p>
@@ -42,7 +52,7 @@
                             
                     </td>
                     <td>
-                        <button onclick="document.location = '/Investments/AddToFavorite?name=@r.startups.CompanyName&rating=@r.startups.Rating&id=@r.id'">Add to Favorites</button>
+                        <button class="button" onclick="document.location = '/Investments/AddToFavorite?name=@r.startups.CompanyName&rating=@r.startups.Rating&id=@r.id'">Add to Favorites</button>
                     </td>
                 </tr>
             }

@@ -1,4 +1,14 @@
 @model Record
+    <head>
+        <style>
+            .button {
+                background-color: green;
+                color: white;
+                border: 2px solid black;
+                border-radius: 4px
+            }
+        </style>
+    </head>
 
 <h1>@Model.startups.CompanyName</h1><br />
 <h2 style="color:green">Investment Strategy Rating: @Model.startups.Rating</h2>
@@ -63,9 +73,9 @@ else
 </div>
     
 
-<button onclick="document.location = '/Investments/AddPublicComment?companyName=@Model.startups.CompanyName'">Add Public Comment</button>
+<button class="button" onclick="document.location = '/Investments/AddPublicComment?companyName=@Model.startups.CompanyName'">Add Public Comment</button>
 
 
-<button onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating&id=@Model.id'">Add to Favorites</button>
-<button onclick="window.location = document.referrer">Back to Results</button>
+<button class="button" onclick="document.location = '/Investments/AddToFavorite?name=@Model.startups.CompanyName&rating=@Model.startups.Rating&id=@Model.id'">Add to Favorites</button>
+<button class="button" onclick="window.location = document.referrer">Back to Results</button>
 
