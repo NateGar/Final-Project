@@ -26,26 +26,9 @@
         </table>
         @foreach (UserPreferences u in Model)
         {
-            <form action="/Investments/Search" method="post">
-                <input type="hidden" name="country" value="@u.Country" />
-                <input type="hidden" name="city" value="@u.City" />
-                <input type="hidden" name="theme" value="@u.Theme" />
-                <input type="hidden" name="technologyAreas" value="@u.TechArea" />
-                <input type="hidden" name="alignment" value="@u.Alignment" />
-                <input type="hidden" name="rating" value="@u.Rank" />
-                <button type="submit" value="Submit">Search Using Preferences</button>
-            </form>
-            <br />
-            <form action="/Investments/RemoveUserPreferences" method="post">
-                <input type="hidden" name="id" value="@u.Id" />
-                <button type="submit" value="Submit">Remove These Preferences</button>
-            </form>
-            <br />
-            <form action="/Investments/UpdateUserPreferences" method="post">
-                <input type="hidden" name="id" value="@u.Id" />
-                <button type="submit" value="Submit">Edit My Preferences</button>
-            </form>
-            <br />
+            <button onclick="document.location = '/Investments/Search?country=@u.Country&city=@u.City&theme=@u.Theme&technologyAreas=@u.TechArea&alignment=@u.Alignment&rating=@u.Rank'">Search Using Preferences</button>
+            <button onclick="document.location = '/Investments/RemoveUserPreferences?id=@u.Id'">Remove These Preferences</button>
+            <button onclick="document.location = '/Investments/UpdateUserPreferences?id=@u.Id'">Change These Preferences</button>
         }
 
     }
@@ -182,10 +165,10 @@
 
         countrySel.onchange = function () {
 
-            citySel.length = 1; 
+            citySel.length = 1;
 
             if (this.selectedIndex < 1)
-                return; 
+                return;
 
             for (var city in countryStateInfo[this.value]) {
                 citySel.options[citySel.options.length] = new Option(city, city);
