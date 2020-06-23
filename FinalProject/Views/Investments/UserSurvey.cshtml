@@ -16,32 +16,32 @@
         <h2>My Search Preferences:</h2>
         @foreach (UserPreferences u in Model)
         {
-            <div style="position:relative; border:groove medium green; width:auto ">
+            <div>
                 <ul>
 
                     @if (u.Country != null)
                     {
-                        <li style="font-size:26px"><b>Country:</b> @u.Country</li>
+                        <li style="font-size:22px"><b>Country:</b> @u.Country</li>
                     }
                     @if (u.City != null)
                     {
-                        <li style="font-size:26px"><b>City:</b> @u.City</li>
+                        <li style="font-size:22px"><b>City:</b> @u.City</li>
                     }
                     @if (u.TechArea != null)
                     {
-                        <li style="font-size:26px"><b>Technology Area:</b> @u.TechArea</li>
+                        <li style="font-size:22px"><b>Technology Area:</b> @u.TechArea</li>
                     }
                     @if (u.Alignment != null)
                     {
-                        <li style="font-size:26px"><b>Seamless Alignment:</b> @u.Alignment</li>
+                        <li style="font-size:22px"><b>Seamless Alignment:</b> @u.Alignment</li>
                     }
                     @if (u.Theme != null)
                     {
-                        <li style="font-size:26px"><b>Theme:</b> @u.Theme</li>
+                        <li style="font-size:22px"><b>Theme:</b> @u.Theme</li>
                     }
                     @if (u.Rank != null)
                     {
-                        <li style="font-size:26px"><b>Minimum Rating:</b> @u.Rank</li>
+                        <li style="font-size:22px"><b>Minimum Rating:</b> @u.Rank</li>
                     }
                 </ul>
             </div>
