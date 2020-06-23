@@ -2,35 +2,46 @@
 @{
     @if (Model.Count >= 1)
     {
-        <h3>My Search Preferences:</h3>
-        <table class="table">
-            <tr>
-                <th class="hideheader">Country</th>
-                <th class="hideheader">City</th>
-                <th class="hideheader">Technology Area</th>
-                <th class="hideheader">Seamless Alignment</th>
-                <th class="hideheader">Theme</th>
-                <th class="hideheader">Rating</th>
-            </tr>
-            @foreach (UserPreferences u in Model)
-            {
-                <tr>
-                    <td class="td3">@u.Country</td>
-                    <td class="td3">@u.City</td>
-                    <td class="td3">@u.TechArea</td>
-                    <td class="td3">@u.Alignment</td>
-                    <td class="td3">@u.Theme</td>
-                    <td class="td3">@u.Rank</td>
-                </tr>
-            }
-        </table>
+        <h2>My Search Preferences:</h2>
         @foreach (UserPreferences u in Model)
         {
+            <div style="position:relative; border:groove medium green; width:auto ">
+                <ul>
+
+                    @if (u.Country != null)
+                    {
+                        <li style="font-size:26px"><b>Country:</b> @u.Country</li>
+                    }
+                    @if (u.City != null)
+                    {
+                        <li style="font-size:26px"><b>City:</b> @u.City</li>
+                    }
+                    @if (u.TechArea != null)
+                    {
+                        <li style="font-size:26px"><b>Technology Area:</b> @u.TechArea</li>
+                    }
+                    @if (u.Alignment != null)
+                    {
+                        <li style="font-size:26px"><b>Seamless Alignment:</b> @u.Alignment</li>
+                    }
+                    @if (u.Theme != null)
+                    {
+                        <li style="font-size:26px"><b>Theme:</b> @u.Theme</li>
+                    }
+                    @if (u.Rank != null)
+                    {
+                        <li style="font-size:26px"><b>Minimum Rating:</b> @u.Rank</li>
+                    }
+                </ul>
+            </div>
+        }
+        @foreach (UserPreferences u in Model)
+        {
+            <br />
             <button onclick="document.location = '/Investments/Search?country=@u.Country&city=@u.City&theme=@u.Theme&technologyAreas=@u.TechArea&alignment=@u.Alignment&rating=@u.Rank'">Search Using Preferences</button>
             <button onclick="document.location = '/Investments/RemoveUserPreferences?id=@u.Id'">Remove These Preferences</button>
             <button onclick="document.location = '/Investments/UpdateUserPreferences?id=@u.Id'">Change These Preferences</button>
         }
-
     }
     else
     {
