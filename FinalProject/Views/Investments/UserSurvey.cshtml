@@ -1,4 +1,14 @@
 ﻿@model List<UserPreferences>
+    <head>
+        <style>
+            .button {
+                background-color: green;
+                color: white;
+                border: 2px solid black;
+                border-radius: 4px
+            }
+        </style>
+    </head>
 @{
     @if (Model.Count >= 1)
     {
@@ -37,10 +47,9 @@
         }
         @foreach (UserPreferences u in Model)
         {
-            <br />
-            <button onclick="document.location = '/Investments/Search?country=@u.Country&city=@u.City&theme=@u.Theme&technologyAreas=@u.TechArea&alignment=@u.Alignment&rating=@u.Rank'">Search Using Preferences</button>
-            <button onclick="document.location = '/Investments/RemoveUserPreferences?id=@u.Id'">Remove These Preferences</button>
-            <button onclick="document.location = '/Investments/UpdateUserPreferences?id=@u.Id'">Change These Preferences</button>
+            <button class="button" onclick="document.location = '/Investments/Search?country=@u.Country&city=@u.City&theme=@u.Theme&technologyAreas=@u.TechArea&alignment=@u.Alignment&rating=@u.Rank'">Search Using Preferences</button>
+            <button class="button" onclick="document.location = '/Investments/RemoveUserPreferences?id=@u.Id'">Remove These Preferences</button>
+            <button class="button" onclick="document.location = '/Investments/UpdateUserPreferences?id=@u.Id'">Change These Preferences</button>
         }
     }
     else
@@ -92,7 +101,7 @@
                 </select><br />
                 <label for="rating">Minimum Rating (1-15):</label><br />
                 <input type="number" name="rating" placeholder="Rating" min="1" max="15" /><br />
-                <br /> <input type="submit" value="Save and Search" />
+                <br /> <input class="button" type="submit" value="Save and Search" />
             </form>
         </div>
     }
