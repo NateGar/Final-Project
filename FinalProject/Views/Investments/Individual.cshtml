@@ -1,31 +1,45 @@
 @model Record
 
 <h1>@Model.startups.CompanyName</h1><br />
-<h2 style="color:green">Invetment Strategy Rating: @Model.startups.Rating</h2>
-<h4>Company Website: @Model.startups.CompanyWebsite</h4>
-<h4>Location: @Model.startups.City, @Model.startups.Country</h4><br />
+<h2 style="color:green">Investment Strategy Rating: @Model.startups.Rating</h2>
+<h4>Company Website: <a href ="@Model.startups.CompanyWebsite">@Model.startups.CompanyWebsite</a></h4>
+<h4>Company Summary: @Model.startups.TwoLineCompanySummary</h4>
+@if (Model.startups.City != null)
+{
+    <h4>Location: @Model.startups.City, @Model.startups.Country</h4><br />
+}
+else
+{
+    <h4>Location: @Model.startups.Country</h4><br />
+}
 <div>
  <h3>Company Information:</h3>
     <ul>
         @if (Model.startups.Alignment != null)
         {
-            <li>This startup is aligned with these Seamless Companies: @Model.startups.Alignment</li>
+            <li><b>This startup is aligned with these Seamless Companies:</b> @Model.startups.Alignment</li>
         }
         else
         {
-            <li> This startup is not aligned with any Seamless Companies yet.</li>
+            <li><b> This startup is not aligned with any Seamless Companies yet. </b> </li>
         }
         @if (Model.startups.TechnologyAreas != null)
         {
-            <li>Technology Area: @Model.startups.TechnologyAreas</li>
+            <li><b>Technology Area:</b> @Model.startups.TechnologyAreas</li>
         }
         else 
         { 
-            <li>Technology Area: None currently listed</li>
+            <li><b>Technology Area:</b> None currently listed </li>
         }
-        <li>Themes: @Model.startups.Themes</li>
-        <li>Company Summary: @Model.startups.TwoLineCompanySummary</li>
-        <li>Total Funds Raised: @Model.startups.Raised</li>
+       @if (Model.startups.Themes != null)
+       {
+        <li><b>Themes:</b> @Model.startups.Themes</li>
+       }
+       else
+       {
+        <li><b>Themes:</b> None currently listed </li>
+       }
+        <li><b>Total Funds Raised:</b> @Model.startups.Raised</li>
    </ul>
 </div><br />
 
